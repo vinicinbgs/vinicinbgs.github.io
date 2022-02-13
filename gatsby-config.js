@@ -9,10 +9,10 @@ const path = require(`path`)
 module.exports = {
   siteMetadata: {
     siteTitle: `@vinicinbgs`,
-    siteTitleAlt: `Personal Blog`,
-    siteHeadline: `Personal Blog - @vinicinbgs`,
-    siteUrl: `https://minimal-blog.lekoarts.de`,
-    siteDescription: `Personal blog.`,
+    siteTitleAlt: `Software Engineering Blog`,
+    siteHeadline: `@vinicinbgs blog`,
+    siteUrl: `https://vinicinbgs.github.io`,
+    siteDescription: `I hope to share some techs knowledgment and contribute to the community.`,
     siteLanguage: `en`,
     siteImage: `/banner.jpg`,
     author: `@vinicinbgs`,
