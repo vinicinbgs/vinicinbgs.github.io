@@ -1,33 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import Layout from "@lekoarts/gatsby-theme-minimal-blog/src/components/layout"
+import Layout from '@lekoarts/gatsby-theme-minimal-blog/src/components/layout';
 import ReposityCard, { IRepository } from '../components/RepositoryCard';
 import { Section, Title } from '../global.styles';
 import { BsGithub } from 'react-icons/bs';
 
 const Repositories = () => {
-    const [repositories, setRepositories] = useState<IRepository[]>([]);
+  const [repositories, setRepositories] = useState<IRepository[]>([]);
 
-    useEffect(() => {
-        const fetchRepos = async (): Promise<IRepository[]> => {
-            const gitRepos = await fetch(`${process.env.GATSBY_API_GITHUB}/users/vinicinbgs/repos`);
-            return await gitRepos.json();
-        }
+  useEffect(() => {
+    const fetchRepos = async (): Promise<IRepository[]> => {
+      const gitRepos = await fetch(
+        `${process.env.GATSBY_API_GITHUB}/users/vinicinbgs/repos`
+      );
+      return await gitRepos.json();
+    };
 
-        fetchRepos().then((repos) => {
-            setRepositories(repos);
-        });
-    }, []);
+    fetchRepos().then((repos) => {
+      setRepositories(repos);
+    });
+  }, []);
 
-    return (
-        <Layout>
-            <Section>
-                <Title><BsGithub /> Repositories</Title>
-                {repositories.map((repo) => (
-                    <ReposityCard key={repo.id} {...repo} />
-                ))}
-            </Section>
-        </Layout>
-    );
-}
+  return (
+    <Layout>
+      <Section>
+        <Title id="repositories">
+          <BsGithub /> Repositories
+        </Title>
+        {repositories.map((repo) => (
+          <ReposityCard key={repo.id} {...repo} />
+        ))}
+      </Section>
+    </Layout>
+  );
+};
 
-export default Repositories
+export default Repositories;
