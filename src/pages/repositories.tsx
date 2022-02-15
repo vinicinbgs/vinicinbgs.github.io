@@ -3,6 +3,7 @@ import Layout from '@lekoarts/gatsby-theme-minimal-blog/src/components/layout';
 import ReposityCard, { IRepository } from '../components/RepositoryCard';
 import { Section, Title } from '../global.styles';
 import { BsGithub } from 'react-icons/bs';
+import Footer from '@lekoarts/gatsby-theme-minimal-blog/src/components/footer';
 
 const Repositories = () => {
   const [repositories, setRepositories] = useState<IRepository[]>([]);
