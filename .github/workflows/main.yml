@@ -50,9 +50,10 @@ jobs:
         timeout-minutes: 10
         with:
           install: false
-          start: yarn cy:start:run
-          wait-on: 'http://localhost:8000'
-          
+          build: yarn build
+          start: yarn serve -p 9000
+          wait-on: 'http://localhost:9000'
+
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
