@@ -8,12 +8,12 @@ describe('Accessibility tests', () => {
   it('Visit Repository Page', () => {
     cy.get('#repositories').should('be.visible');
 
-    cy.intercept({
-      method: 'GET',
-      url: 'https://api.github.com/users/vinicinbgs/repos'
-    }).as('repos');
+    cy.intercept('GET', 'https://api.github.com/users/vinicinbgs/repos').as(
+      'repos'
+    );
 
-    cy.waitFor('@repos');
-    cy.get('[data-type="repository"]').should('be.visible');
+    cy.waitFor('@repos').then(() => {
+      cy.get('[data-type="repository"]').should('be.visible');
+    });
   });
 });
