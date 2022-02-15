@@ -6,6 +6,15 @@
   "author": "LekoArts <hello@lekoarts.de>",
   "license": "0BSD",
   "starter-name": "gatsby-starter-minimal-blog",
+  "nyc": {
+    "report-dir": "cypress-coverage",
+    "all": true,
+    "include": "src/pages/*.tsx",
+    "reporter": [
+      "text",
+      "json"
+    ]
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -17,8 +26,10 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "test": "jest",
     "cy:open": "cypress open",
-    "test:e2e": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop http://localhost:8000 cy:open",
-    "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run"
+    "cy:run": "cypress run --headless",
+    "cy:start:run": "yarn start && yarn cy:run",
+    "cy:report:html": "yarn nyc report --reporter=html",
+    "cy:report:text": "yarn nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^4.0.0",
@@ -43,6 +54,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-flow": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
+    "@cypress/code-coverage": "^3.9.12",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
@@ -52,6 +64,7 @@
     "@typescript-eslint/parser": "^5.11.0",
     "axe-core": "^4.4.1",
     "babel-jest": "^27.5.1",
+    "babel-plugin-istanbul": "6.0.0",
     "cross-env": "^7.0.3",
     "cypress": "^9.4.1",
     "cypress-axe": "^0.14.0",

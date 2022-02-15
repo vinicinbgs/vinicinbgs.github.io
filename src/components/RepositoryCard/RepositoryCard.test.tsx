@@ -32,6 +32,7 @@ describe('Repository Card Component', () => {
 
     expect(queryByText(/Description Test/i)).toBeTruthy();
     expect(queryByText(/Name Test/i)).toBeTruthy();
+
     expect(queryByText(/#test lang/i)).toBeFalsy();
   });
 });
