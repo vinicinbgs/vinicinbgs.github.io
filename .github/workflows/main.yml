@@ -52,4 +52,15 @@ jobs:
           install: false
           start: yarn cy:start:run
           wait-on: 'http://localhost:8000'
-          headless: true
+          
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
