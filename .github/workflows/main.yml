@@ -40,9 +40,7 @@ jobs:
 
       - name: Install modules
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          yarn install --frozen-lockfile
-          ls
+        run: yarn install --frozen-lockfile
             
       - name: Run unit tests
         run: yarn test
@@ -51,6 +49,7 @@ jobs:
         uses: cypress-io/github-action@v2
         timeout-minutes: 10
         with:
+          install: false
           start: yarn cy:start:run
-          browser: chrome
+          wait-on: 'http://localhost:8000'
           headless: true
