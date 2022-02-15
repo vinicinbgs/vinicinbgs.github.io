@@ -12,8 +12,7 @@ describe('Accessibility tests', () => {
       'repos'
     );
 
-    cy.waitFor('@repos').then(() => {
-      cy.get('[data-type="repository"]').should('be.visible');
-    });
+    cy.waitFor('@repos');
+    cy.get('[data-type="repository"]').should('be.visible');
   });
 });
