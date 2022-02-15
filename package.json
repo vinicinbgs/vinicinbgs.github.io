@@ -25,6 +25,7 @@
     "clean": "gatsby clean",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "test": "jest",
+    "test:text": "yarn test --coverage --coverageReporters='text-summary'",
     "cy:open": "cypress open",
     "cy:run": "cypress run --headless",
     "cy:start:run": "yarn start-server-and-test start http://localhost:9001 cy:run",
