@@ -11,6 +11,7 @@ describe('Accessibility tests', () => {
     cy.intercept('GET', 'https://api.github.com/users/vinicinbgs/repos').as(
       'repos'
     );
+
     cy.waitFor('@repos');
     cy.get('[data-type="repository"]').should('be.visible');
   });
