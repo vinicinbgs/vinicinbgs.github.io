@@ -1,0 +1,5 @@
+public
+.cache
+.git
+node_modules
+.github

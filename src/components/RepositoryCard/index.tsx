@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Card, Link } from "./styles"
-import { BsStarFill } from "react-icons/bs"
+import * as React from 'react';
+import { Card, Link } from './styles';
+import { BsStarFill } from 'react-icons/bs';
 
 export interface IRepository {
   id?: number;
@@ -12,19 +12,28 @@ export interface IRepository {
   topics: string[];
 }
 
-const RepositoryCard = ({ description, name, stargazers_count, html_url, language, topics }: IRepository) => {
+const RepositoryCard = ({
+  description,
+  name,
+  stargazers_count,
+  html_url,
+  language,
+  topics
+}: IRepository) => {
   return (
-    <Card>
+    <Card data-type="repository">
       <Link href={html_url} target="_blank">
         <h4>{name}</h4>
         <p>{description}</p>
-        <strong><BsStarFill /> {stargazers_count}</strong>
+        <strong>
+          <BsStarFill /> {stargazers_count}
+        </strong>
         <p>
-            {language ? `#${language} `: ""}
-            {topics.map((topic) => `#${topic} `)}
-          </p>
-        </Link>
+          {language ? `#${language} ` : ''}
+          {topics.map((topic) => `#${topic} `)}
+        </p>
+      </Link>
     </Card>
-  )
-}
-export default RepositoryCard
+  );
+};
+export default RepositoryCard;
