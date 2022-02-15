@@ -48,4 +48,9 @@ jobs:
         run: yarn test
       
       - name: Run e2e tests
-        run: yarn cy:start:run
+        uses: cypress-io/github-action@v2
+        timeout-minutes: 10
+        with:
+          start: yarn start
+          browser: chrome
+          headless: true
