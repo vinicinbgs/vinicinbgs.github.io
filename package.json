@@ -27,7 +27,7 @@
     "test": "jest",
     "cy:open": "cypress open",
     "cy:run": "cypress run --headless",
-    "cy:start:run": "yarn start && yarn cy:run",
+    "cy:start:run": "yarn start-server-and-test start http://localhost:8000 cy:run",
     "cy:report:html": "yarn nyc report --reporter=html",
     "cy:report:text": "yarn nyc report --reporter=text-summary"
   },
