@@ -31,12 +31,16 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install modules
-        run: |
-          yarn
-          ls
-          
+        run: yarn
+            
       - name: Run unit tests
         run: yarn test
-        
-      - name: Run e2e tests
-        run: yarn cy:start:run
+      
+      - name: Chrome
+        uses: cypress-io/github-action@v2
+        timeout-minutes: 10
+        with:
+          build: yarn start
+          start: yarn start
+          browser: chrome
+          headless: true
