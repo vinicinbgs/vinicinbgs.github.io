@@ -24,6 +24,7 @@ jobs:
         run: |
           cp .env.example .env
           mkdir .nyc_output
+          touch .nyc_output/out.json
 
       - name: Cache node modules
         id: cache-nodemodules
