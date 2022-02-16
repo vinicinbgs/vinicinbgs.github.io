@@ -10,7 +10,7 @@ describe('Accessibility tests', () => {
 
     cy.intercept(
       'GET',
-      `${Cypress.env('GATSBY_API_GITHUB')}/users/vinicinbgs/repos`
+      `${Cypress.env('api_github')}/users/vinicinbgs/repos`
     ).as('repos');
 
     cy.waitFor('@repos');
