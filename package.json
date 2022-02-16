@@ -19,10 +19,10 @@
     "test:text": "yarn test --coverage --coverageReporters='text-summary'",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cy:run:headless": "cypress run --browser=chrome",
+    "cy:run:headless": "cypress run --browser=chrome --headless",
     "cy:start:run": "yarn start-server-and-test start http://localhost:9001 cy:run",
     "cy:report:html": "yarn nyc report --reporter=html",
-    "cy:report:text": "yarn nyc report --reporter=text"
+    "cy:report:text": "yarn cy:run:headless && yarn nyc report --reporter=text"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^4.0.0",
