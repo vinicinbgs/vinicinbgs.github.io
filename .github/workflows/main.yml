@@ -48,6 +48,7 @@ jobs:
         timeout-minutes: 10
         with:
           install: true
+          install-command: yarn
           build: yarn build
           start: yarn serve -p 9001
           wait-on: 'http://localhost:9001'
