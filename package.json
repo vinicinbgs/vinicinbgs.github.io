@@ -6,15 +6,6 @@
   "author": "LekoArts <hello@lekoarts.de>",
   "license": "0BSD",
   "starter-name": "gatsby-starter-minimal-blog",
-  "nyc": {
-    "report-dir": "cypress-coverage",
-    "all": true,
-    "include": "src/pages/*.tsx",
-    "reporter": [
-      "text",
-      "json"
-    ]
-  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -28,10 +19,10 @@
     "test:text": "yarn test --coverage --coverageReporters='text-summary'",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cy:run:headless": "cypress run --headless --browser=chrome",
+    "cy:run:headless": "cypress run --browser=chrome --headless",
     "cy:start:run": "yarn start-server-and-test start http://localhost:9001 cy:run",
     "cy:report:html": "yarn nyc report --reporter=html",
-    "cy:report:text": "yarn nyc report --reporter=text-summary"
+    "cy:report:text": "yarn cy:run:headless && yarn nyc report --reporter=text"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^4.0.0",
@@ -58,6 +49,8 @@
     "@babel/preset-flow": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
     "@cypress/code-coverage": "^3.9.12",
+    "@cypress/instrument-cra": "^1.4.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
@@ -80,6 +73,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "gh-pages": "^3.2.3",
     "jest": "^27.5.1",
+    "nyc": "^15.1.0",
     "prettier": "^2.5.1",
     "react-test-renderer": "^17.0.2",
     "start-server-and-test": "^1.14.0",

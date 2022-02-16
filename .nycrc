@@ -1,0 +1,10 @@
+{
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "report-dir": "cypress-coverage",
+    "all": true,
+    "include": "src/pages/*.tsx",
+    "reporter": [
+      "text",
+      "json"
+    ]
+}
