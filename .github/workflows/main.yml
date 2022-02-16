@@ -57,6 +57,7 @@ jobs:
           start: yarn serve -p 9001
           wait-on: 'http://localhost:9001'
           browser: chrome
+          headless: false
 
       - name: Cypress Coverage
         run: yarn cy:report:text

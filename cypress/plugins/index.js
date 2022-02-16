@@ -22,7 +22,7 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  config.env.api_github = process.env.GATSBY_API_GITHUB;
+  //config.env.api_github = process.env.GATSBY_API_GITHUB;
 
   require('@cypress/code-coverage/task')(on, config);
 

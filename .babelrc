@@ -10,7 +10,11 @@
           ]
         }
       }
-    ], "@babel/preset-react"
+    ],
+    "@babel/preset-react"
   ],
-  "plugins": [ "transform-class-properties","babel-plugin-istanbul" ]
+  "plugins": [
+    "transform-class-properties",
+    "istanbul"
+  ]
 }
