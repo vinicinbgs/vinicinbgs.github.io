@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 
-const Comments = () => {
+interface Props {
+  path: string;
+}
+
+const Comments = ({ path }: Props) => {
   useEffect(() => {
     const oldElements = document.getElementsByClassName('utterances');
 
@@ -19,7 +23,7 @@ const Comments = () => {
     script.setAttribute('label', 'comment');
     script.setAttribute('theme', 'github-light');
     script.setAttribute('crossorigin', 'anonymous');
-    script.setAttribute('issue-term', 'homepage');
+    script.setAttribute('issue-term', path ?? '/homepage');
 
     document.getElementById('comments')?.appendChild(script);
   });

@@ -1,12 +1,15 @@
 /** @jsx jsx */
 import { jsx, Link } from 'theme-ui';
 import Comments from '../../../components/Comments';
+import { useLocation } from '@reach/router';
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
   return (
     <div>
       <hr />
-      <Comments />
+      <Comments path={pathname} />
       <hr />
       <footer>
         <div>&copy; {new Date().getFullYear()} All rights reserved.</div>
