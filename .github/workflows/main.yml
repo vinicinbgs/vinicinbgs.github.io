@@ -20,8 +20,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Create .env
-        run: cp .env.example .env
+      - name: Create .env and .nyc_output
+        run: |
+          cp .env.example .env
+          mkdir .nyc_output
 
       - name: Cache node modules
         id: cache-nodemodules
