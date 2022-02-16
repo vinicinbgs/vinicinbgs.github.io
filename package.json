@@ -31,7 +31,7 @@
     "cy:run:headless": "cypress run --headless",
     "cy:start:run": "yarn start-server-and-test start http://localhost:9001 cy:run",
     "cy:report:html": "yarn nyc report --reporter=html",
-    "cy:report:text": "yarn nyc report --reporter=text-summary"
+    "cy:report:text": "yarn cy:run:headless && yarn nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^4.0.0",

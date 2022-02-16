@@ -57,9 +57,7 @@ jobs:
           start: yarn serve -p 9001
           wait-on: 'http://localhost:9001'
           browser: chrome
-
-      - name: Cypress Coverage
-        run: yarn cy:report:text
+          command: yarn cy:report:text
 
       - uses: actions/upload-artifact@v2
         if: failure()
