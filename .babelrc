@@ -12,9 +12,5 @@
       }
     ], "@babel/preset-react"
   ],
-  "plugins": [
-    [
-      "babel-plugin-istanbul"
-    ]
-  ],
+  "plugins": [ "transform-class-properties","babel-plugin-istanbul" ]
 }

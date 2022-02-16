@@ -1,6 +1,8 @@
 #!bin/bash
 
 echo git fetch && \
+git checkout main && \
+git pull && \
 git checkout gh-pages && \
 git merge main && \
 rm -Rf public && \
