@@ -3,10 +3,12 @@ import { jsx, Link } from 'theme-ui';
 import Comments from '../../../components/Comments';
 
 const Footer = () => {
+  const path = window?.location?.pathname;
+
   return (
     <div>
       <hr />
-      <Comments />
+      <Comments path={path} />
       <hr />
       <footer>
         <div>&copy; {new Date().getFullYear()} All rights reserved.</div>
