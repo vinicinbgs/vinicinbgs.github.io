@@ -1,4 +1,3 @@
-[branch "main"]
 # Logs
 logs
 *.log
@@ -71,3 +70,5 @@ public
 .idea
 .vscode
 .DS_Store
+
+storybook-static

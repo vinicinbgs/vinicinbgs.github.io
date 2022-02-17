@@ -9,7 +9,7 @@ export interface IRepository {
   stargazers_count: number;
   html_url: string;
   language: string;
-  topics: string[];
+  topics: Array<string>;
 }
 
 const RepositoryCard = ({
@@ -30,7 +30,7 @@ const RepositoryCard = ({
         </strong>
         <p>
           {language ? `#${language} ` : ''}
-          {topics.map((topic) => `#${topic} `)}
+          {topics && topics.map((topic) => `#${topic} `)}
         </p>
       </Link>
     </Card>

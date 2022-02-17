@@ -11,7 +11,7 @@
         }
       }
     ],
-    "@babel/preset-react"
+    "babel-preset-react-app"
   ],
   "plugins": [
     "transform-class-properties",
