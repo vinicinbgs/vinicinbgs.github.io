@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Link, Description } from './styles';
+import { Card, Link, Description, Title } from './styles';
 import { BsStarFill } from 'react-icons/bs';
 
 export interface IRepository {
@@ -23,7 +23,7 @@ const RepositoryCard = ({
   return (
     <Card data-type="repository">
       <Link href={html_url} target="_blank">
-        <h4>{name}</h4>
+        <Title>{name}</Title>
         <Description>{description}</Description>
         <strong>
           <BsStarFill /> {stargazers_count}

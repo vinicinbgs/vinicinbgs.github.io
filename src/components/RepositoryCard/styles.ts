@@ -2,11 +2,22 @@ import styled from 'styled-components';
 
 const Card = styled.div`
   height: 100%;
-  width: 70%;
+  width: 32%;
   padding: 0.3em 1em 1em;
   margin-bottom: 15px;
   box-shadow: 0 0 2px var(--theme-ui-colors-text);
   border-radius: 10px;
+  word-wrap: break-word;
+  height: 200px;
+  overflow: auto;
+
+  @media (max-width: 800px) {
+    display: block;
+    width: 48%;
+    font-size: 13px;
+    height: 150px;
+    padding: 0 10px 10px 10px;
+  }
 `;
 
 const Link = styled.a`
@@ -23,7 +34,21 @@ const Link = styled.a`
 `;
 
 const Description = styled.p`
-  word-break: break-all;
+  @media (max-width: 800px) {
+    display: block;
+    width: 100%;
+    font-size: 1em;
+  }
 `;
 
-export { Card, Link, Description };
+const Title = styled.h4`
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 19px;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
+`;
+
+export { Card, Link, Description, Title };
