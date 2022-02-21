@@ -22,4 +22,8 @@ const Link = styled.a`
   }
 `;
 
-export { Card, Link };
+const Description = styled.p`
+  word-break: break-all;
+`;
+
+export { Card, Link, Description };
