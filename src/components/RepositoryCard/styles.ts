@@ -45,10 +45,17 @@ const Title = styled.h4`
   font-weight: bold;
   margin-top: 10px;
   font-size: 19px;
+  text-align: center;
 
   @media (max-width: 800px) {
     font-size: 15px;
   }
 `;
 
-export { Card, Link, Description, Title };
+const CardHeader = styled.div`
+  background-color: var(--theme-ui-colors-secondary);
+  color: white;
+  border-radius: 2px;
+`;
+
+export { Card, Link, Description, Title, CardHeader };
