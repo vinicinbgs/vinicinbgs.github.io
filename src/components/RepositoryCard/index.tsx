@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Link } from './styles';
+import { Card, Link, Description, Title, CardHeader } from './styles';
 import { BsStarFill } from 'react-icons/bs';
 
 export interface IRepository {
@@ -9,7 +9,7 @@ export interface IRepository {
   stargazers_count: number;
   html_url: string;
   language: string;
-  topics: string[];
+  topics: Array<string>;
 }
 
 const RepositoryCard = ({
@@ -23,14 +23,16 @@ const RepositoryCard = ({
   return (
     <Card data-type="repository">
       <Link href={html_url} target="_blank">
-        <h4>{name}</h4>
-        <p>{description}</p>
+        <CardHeader>
+          <Title>{name}</Title>
+        </CardHeader>
+        <Description>{description}</Description>
         <strong>
           <BsStarFill /> {stargazers_count}
         </strong>
         <p>
           {language ? `#${language} ` : ''}
-          {topics.map((topic) => `#${topic} `)}
+          {topics && topics.map((topic) => `#${topic} `)}
         </p>
       </Link>
     </Card>

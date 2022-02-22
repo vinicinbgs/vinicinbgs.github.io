@@ -22,7 +22,9 @@
     "cy:run:headless": "cypress run --browser=chrome --headless",
     "cy:start:run": "yarn start-server-and-test start http://localhost:9001 cy:run",
     "cy:report:html": "yarn nyc report --reporter=html",
-    "cy:report:text": "yarn cy:run:headless && yarn nyc report --reporter=text"
+    "cy:report:text": "yarn cy:run:headless && yarn nyc report --reporter=text",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^4.0.0",
@@ -44,13 +46,24 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.4",
     "@babel/plugin-syntax-jsx": "^7.16.7",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-flow": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@cypress/code-coverage": "^3.9.12",
     "@cypress/instrument-cra": "^1.4.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@react-theming/storybook-addon": "^1.1.5",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
@@ -60,8 +73,12 @@
     "@typescript-eslint/parser": "^5.11.0",
     "axe-core": "^4.4.1",
     "babel-jest": "^27.5.1",
+    "babel-loader": "^8.2.3",
     "babel-plugin-istanbul": "6.0.0",
+    "babel-plugin-remove-graphql-queries": "^4.7.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-gatsby": "^2.7.0",
+    "babel-preset-react-app": "^10.0.1",
     "cross-env": "^7.0.3",
     "cypress": "^9.4.1",
     "cypress-axe": "^0.14.0",
@@ -71,12 +88,14 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-storybook": "^0.5.6",
     "gh-pages": "^3.2.3",
     "jest": "^27.5.1",
     "nyc": "^15.1.0",
     "prettier": "^2.5.1",
     "react-test-renderer": "^17.0.2",
     "start-server-and-test": "^1.14.0",
+    "storybook-addon-gatsby": "^0.0.5",
     "typescript": "^4.5.5"
   }
 }
