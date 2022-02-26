@@ -3,8 +3,9 @@ title: 'Understand Shell Script and Create one automated script'
 date: 2022-02-21
 slug: '/understand-shell-script'
 canonicalUrl: 'https://random-blog-about-curses.com'
-description: "Ill show to you how works a shell script and we go create one example"
+description: 'Ill show to you how works a shell script and we go create one example'
 ---
+
 
 ```bash
 #!/bin/sh
@@ -19,40 +20,117 @@ if command1
         command3
 fi
 ```
-<legend style={{ textAlign: "right"}}>- This snippet is an illustration -</legend>
 
-Summary:
-1. [String Comparison](#string-comparison)
+<legend style={{ textAlign: 'right' }}>
+  - This snippet is an illustration -
+</legend>
 
-# Introduction
+#### Summary:
+[Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
+- [Introduction](#intro)
+- 1. [Example](#example)
+  - 1.1 [Create Example](#create-example)
+  - 1.2 [Write Example](#write-example)
+  - 1.3 [Run Example](#run-example)
+---
+- 2. [Loops](#loops)
+  - 2.1 [For](#loops-for)
+  - 2.2 [While](#loops-while)
+---
+- 3. [Comparison](#comparison)
+  - 3.1 [String Comparison](#string-comparison)
+  - 3.2 [Integer Comparison](#integer-comparison)
+---
+- 4. [Final Example](#final-example)
+
+## <a name="intro"></a> 1. Introduction
+
 What is Shell Script?
+
 - A computer program designed to run in Unix shell, a command-line interpreter.
 
-### 1. In this case our computer program is <ins>example.sh</ins> file
 
-##### 1.1 Create a file called <ins>example.sh</ins> using in terminal this command:
+<p class="hightlight">
+  In this case our computer program is <ins>example.sh</ins> file
+</p>
+
+---
+
+<h4>
+  <a name="create-example"></a>  1.1 Create a file called <ins style={{ color: "red" }}>example.sh</ins> using in terminal this command:
+</h4>
+
 ```bash
 touch example.sh
 chmod +x example.sh
 ```
-- touch: will create the file
-- chmod +x: will give permission to execute file script
 
-##### 1.1 Open file <ins>example.sh</ins> in your preferred ide
+- **touch**: will create the file
+- **chmod +x**: will give permission to execute file script
+
+<h4>
+  <a name="write-example"></a> 1.2 Open file <ins style={{ color: "red" }}>example.sh</ins> in your preferred ide
+</h4>
+
 ```bash
-#!/bin/sh 
+#!/bin/sh
 
 echo "Start" # this command will output in terminal Start string
 ```
-```#!/bin/sh``` tells Unix that the file is to be executed by /bin/sh. 
 
-##### 1.2 Running file <ins>example.sh</ins> in terminal
+- `#!/bin/sh` tells Unix that the file is to be executed by /bin/sh.
+
+<h4>
+  <a name="run-example"></a> 1.3 Running file <ins style={{ color: "red" }}>example.sh</ins> in terminal
+</h4>
+
 ```sh
 sh example.sh
 ```
 ---
-# Loops
-### For
+## <a name="variables"></a> 2. Variables
+
+### 2.1 <a name="variables-declare"></a> Declare Variable
+
+```bash
+#!/bin/sh
+
+VARIABLE_MY_NAME="Vinicius"
+VARIABLE_TEXT="Hi, my name is "
+echo "$VARIABLE_TEXT $VARIABLE_MY_NAME"
+```
+
+Terminal Output: 
+```sh
+Hi, my name is Vinicius
+```
+
+### 2.2 <a name="variables-user-input"></a> Read Input Variable
+```bash
+#!/bin/sh
+
+echo "What is your name?"
+read VARIABLE_MY_NAME
+
+VARIABLE_TEXT="Hi, my name is"
+
+echo "$VARIABLE_TEXT $VARIABLE_MY_NAME"
+```
+
+Terminal Output: 
+```sh
+What is your name?
+> Vinicius
+
+Hi, Vinicius
+```
+
+---
+
+## <a name="loops"></a> 3. Loops
+
+### <a name="loops-for"></a> 3.1 For
+
 ```bash
 #!/bin/sh
 for i in 1 2 3 4 5
@@ -60,7 +138,9 @@ do
   echo "Looping ... number $i"
 done
 ```
-### While
+
+### <a name="loops-while"></a> 3.2 While
+
 ```bash
 #!/bin/sh
 while :
@@ -71,78 +151,81 @@ do
 done
 ```
 
-#### Integer comparison
-is equal to: -eq <br/>
-```if [ "$a" -eq "$b" ]``` <br />
+### <a name="comparison"></a> 4. Comparison
 
-is not equal to: -ne <br />
-```if [ "$a" -ne "$b" ]``` <br />
-
-is greater than: -gt <br />
-```if [ "$a" -gt "$b" ]``` <br />
-
-is greater than or equal to: -ge <br />
-```if [ "$a" -ge "$b" ]``` <br />
-
-is less than: -lt <br />
-```if [ "$a" -lt "$b" ]``` <br />
-
-is less than or equal to: -le <br />
-```if [ "$a" -le "$b" ]``` <br />
-
-is less than (within double parentheses): <  <br />
-```(("$a" < "$b"))``` <br />
-
-is less than or equal to (within double parentheses): <= <br />
-```(("$a" <= "$b"))``` <br />
-
-is greater than (within double parentheses): > <br />
-```(("$a" > "$b"))``` <br />
-
-is greater than or equal to (within double parentheses): >= <br />
-```(("$a" >= "$b"))``` <br />
-
-#### <a name="string-comparison"></a> String comparison
-
-is equal to: = <br />
-```if [ "$a" = "$b" ]```<br />
-
-is equal to: ==<br />
-```if [ "$a" == "$b" ]```<br />
-
-is not equal to: !=<br />
-```if [ "$a" != "$b" ]```<br />
-
-is less than, in ASCII alphabetical order: <<br />
-```if [[ "$a" < "$b" ]]```<br />
-
-is greater than, in ASCII alphabetical order: ><br />
-```if [[ "$a" > "$b" ]]```<br />
-
-string is null, that is, has zero length: -z<br />
+#### <a name="integer-comparison"></a> 4.1 Integer comparison
 ```bash
+# is equal to:
+if [ "$a" -eq "$b" ]
+
+# is not equal to:
+if [ "$a" -ne "$b" ]
+
+# is greater than:
+if [ "$a" -gt "$b" ]
+
+# is greater than or equal to:
+if [ "$a" -ge "$b" ]
+
+# is less than: -lt
+if [ "$a" -lt "$b" ]
+
+# is less than or equal to:
+if [ "$a" -le "$b" ]
+
+# is less than (within double parentheses):
+(("$a" < "$b"))
+
+# is less than or equal to (within double parentheses):
+(("$a" <= "$b"))
+
+# is greater than (within double parentheses):
+(("$a" > "$b"))
+
+# is greater than or equal to (within double parentheses):
+(("$a" >= "$b"))
+```
+
+#### <a name="string-comparison"></a> 4.2 String comparison
+```bash
+# is equal to: 
+if [ "$a" = "$b" ]
+
+# is equal to:
+if [ "$a" == "$b" ]
+
+# is not equal to:
+if [ "$a" != "$b" ]
+
+# is less than, in ASCII alphabetical order:
+if [[ "$a" < "$b" ]]
+
+# is greater than, in ASCII alphabetical order:
+if [[ "$a" > "$b" ]]
+
+# string is null, that is, has zero length:
 if [ -z "$String" ]
 then
   echo "\$String is null."
 else
   echo "\$String is NOT null."
-fi 
-```
-<br />
-string is not null: -n <br />
+fi
 
-```bash
+# string is not null:
 if [ -n "$String" ]
 then
   echo "\$String is not null."
 else
   echo "\$String is null."
-fi 
+fi
 ```
 
 ---
-### Final example.sh
+
+### <a name="final-example"></a> 5. Final example.sh
+
 Steps:
+
 1. output "start" in terminal
 2. output "Put your name" in terminal
 3. wait user input variable name
@@ -211,6 +294,7 @@ script | tee ex.log # fill log file called ex.log
 ---
 
 Sources: <br />
+- https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh
 - https://www.shellscript.sh
 - https://tldp.org/LDP/abs/html/comparison-ops.html
 - https://en.wikipedia.org/wiki/Tee_(command)

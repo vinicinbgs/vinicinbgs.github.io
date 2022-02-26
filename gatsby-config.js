@@ -1,10 +1,10 @@
 require(`dotenv`).config({
-  path: ".env"
-})
+  path: '.env'
+});
 
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
 
-const path = require(`path`)
+const path = require(`path`);
 
 module.exports = {
   siteMetadata: {
@@ -15,7 +15,7 @@ module.exports = {
     siteDescription: `I hope to share some techs knowledgment and contribute to the community.`,
     siteLanguage: `en`,
     siteImage: `/banner.jpg`,
-    author: `@vinicinbgs`,
+    author: `@vinicinbgs`
   },
   plugins: [
     {
@@ -25,28 +25,28 @@ module.exports = {
         navigation: [
           {
             title: `Blog`,
-            slug: `/blog`,
+            slug: `/blog`
           },
           {
             title: `About`,
-            slug: `/about`,
+            slug: `/about`
           },
           {
             title: `Repositories`,
-            slug: `/repositories`,
-          },
+            slug: `/repositories`
+          }
         ],
         externalLinks: [
           {
             name: `Github`,
-            url: `https://github.com/vinicinbgs/`,
+            url: `https://github.com/vinicinbgs/`
           },
           {
             name: `LinkedIn`,
-            url: `https://www.linkedin.com/in/vinicius-morais-dutra-5260bb116/`,
-          },
-        ],
-      },
+            url: `https://www.linkedin.com/in/vinicius-morais-dutra-5260bb116/`
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-omni-font-loader`,
@@ -60,10 +60,10 @@ module.exports = {
         web: [
           {
             name: `IBM Plex Sans`,
-            file: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap`,
-          },
-        ],
-      },
+            file: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap`
+          }
+        ]
+      }
     },
     `gatsby-plugin-sitemap`,
     {
@@ -82,15 +82,15 @@ module.exports = {
           {
             src: `/android-chrome-192x192.png`,
             sizes: `192x192`,
-            type: `image/png`,
+            type: `image/png`
           },
           {
             src: `/android-chrome-512x512.png`,
             sizes: `512x512`,
-            type: `image/png`,
-          },
-        ],
-      },
+            type: `image/png`
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-feed`,
@@ -111,8 +111,8 @@ module.exports = {
           {
             serialize: ({ query: { site, allPost } }) =>
               allPost.nodes.map((post) => {
-                const url = site.siteMetadata.siteUrl + post.slug
-                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`
+                const url = site.siteMetadata.siteUrl + post.slug;
+                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`;
 
                 return {
                   title: post.title,
@@ -120,8 +120,8 @@ module.exports = {
                   excerpt: post.excerpt,
                   url,
                   guid: url,
-                  custom_elements: [{ "content:encoded": content }],
-                }
+                  custom_elements: [{ 'content:encoded': content }]
+                };
               }),
             query: `
               {
@@ -136,10 +136,10 @@ module.exports = {
               }
             `,
             output: `rss.xml`,
-            title: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
-          },
-        ],
-      },
+            title: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`
+          }
+        ]
+      }
     },
     `gatsby-plugin-gatsby-cloud`,
     shouldAnalyseBundle && {
@@ -147,8 +147,8 @@ module.exports = {
       options: {
         analyzerMode: `static`,
         reportFilename: `_bundle.html`,
-        openAnalyzer: false,
-      },
-    },
-  ].filter(Boolean),
-}
+        openAnalyzer: false
+      }
+    }
+  ].filter(Boolean)
+};

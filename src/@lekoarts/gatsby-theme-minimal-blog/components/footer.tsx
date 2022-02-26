@@ -2,6 +2,7 @@
 import { jsx, Link } from 'theme-ui';
 import Comments from '../../../components/Comments';
 import { useLocation } from '@reach/router';
+import '../../../styles.css';
 
 const Footer = () => {
   const { pathname } = useLocation();
