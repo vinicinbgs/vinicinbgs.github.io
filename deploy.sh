@@ -3,8 +3,6 @@
 echo git fetch && \
 git checkout main && \
 git pull && \
-git checkout gh-pages && \
-git merge main && \
 rm -Rf public && \
 yarn build && \
 cd public && \
@@ -14,6 +12,6 @@ git checkout -b gh-pages && \
 git fetch && \
 git add . &&\
 git commit -m "deploy" && \
-git push -u origin gh-pages -f --allow-unrelated-histories && \
+git push -u origin gh-pages -f && \
 cd .. && \
 git checkout develop
