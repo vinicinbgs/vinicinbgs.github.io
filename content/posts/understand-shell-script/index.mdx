@@ -1,0 +1,217 @@
+---
+title: 'Understand Shell Script and Create one automated script'
+date: 2022-02-21
+slug: '/understand-shell-script'
+canonicalUrl: 'https://random-blog-about-curses.com'
+description: "Ill show to you how works a shell script and we go create one example"
+---
+
+```bash
+#!/bin/sh
+# This is a comment!
+echo Hello World        # This is a comment, too!
+
+if command1
+    then
+        command2
+
+    else
+        command3
+fi
+```
+<legend style={{ textAlign: "right"}}>- This snippet is an illustration -</legend>
+
+Summary:
+1. [String Comparison](#string-comparison)
+
+# Introduction
+What is Shell Script?
+- A computer program designed to run in Unix shell, a command-line interpreter.
+
+### 1. In this case our computer program is <ins>example.sh</ins> file
+
+##### 1.1 Create a file called <ins>example.sh</ins> using in terminal this command:
+```bash
+touch example.sh
+chmod +x example.sh
+```
+- touch: will create the file
+- chmod +x: will give permission to execute file script
+
+##### 1.1 Open file <ins>example.sh</ins> in your preferred ide
+```bash
+#!/bin/sh 
+
+echo "Start" # this command will output in terminal Start string
+```
+```#!/bin/sh``` tells Unix that the file is to be executed by /bin/sh. 
+
+##### 1.2 Running file <ins>example.sh</ins> in terminal
+```sh
+sh example.sh
+```
+---
+# Loops
+### For
+```bash
+#!/bin/sh
+for i in 1 2 3 4 5
+do
+  echo "Looping ... number $i"
+done
+```
+### While
+```bash
+#!/bin/sh
+while :
+do
+  echo "Please type something in (^C to quit)"
+  read INPUT_STRING
+  echo "You typed: $INPUT_STRING"
+done
+```
+
+#### Integer comparison
+is equal to: -eq <br/>
+```if [ "$a" -eq "$b" ]``` <br />
+
+is not equal to: -ne <br />
+```if [ "$a" -ne "$b" ]``` <br />
+
+is greater than: -gt <br />
+```if [ "$a" -gt "$b" ]``` <br />
+
+is greater than or equal to: -ge <br />
+```if [ "$a" -ge "$b" ]``` <br />
+
+is less than: -lt <br />
+```if [ "$a" -lt "$b" ]``` <br />
+
+is less than or equal to: -le <br />
+```if [ "$a" -le "$b" ]``` <br />
+
+is less than (within double parentheses): <  <br />
+```(("$a" < "$b"))``` <br />
+
+is less than or equal to (within double parentheses): <= <br />
+```(("$a" <= "$b"))``` <br />
+
+is greater than (within double parentheses): > <br />
+```(("$a" > "$b"))``` <br />
+
+is greater than or equal to (within double parentheses): >= <br />
+```(("$a" >= "$b"))``` <br />
+
+#### <a name="string-comparison"></a> String comparison
+
+is equal to: = <br />
+```if [ "$a" = "$b" ]```<br />
+
+is equal to: ==<br />
+```if [ "$a" == "$b" ]```<br />
+
+is not equal to: !=<br />
+```if [ "$a" != "$b" ]```<br />
+
+is less than, in ASCII alphabetical order: <<br />
+```if [[ "$a" < "$b" ]]```<br />
+
+is greater than, in ASCII alphabetical order: ><br />
+```if [[ "$a" > "$b" ]]```<br />
+
+string is null, that is, has zero length: -z<br />
+```bash
+if [ -z "$String" ]
+then
+  echo "\$String is null."
+else
+  echo "\$String is NOT null."
+fi 
+```
+<br />
+string is not null: -n <br />
+
+```bash
+if [ -n "$String" ]
+then
+  echo "\$String is not null."
+else
+  echo "\$String is null."
+fi 
+```
+
+---
+### Final example.sh
+Steps:
+1. output "start" in terminal
+2. output "Put your name" in terminal
+3. wait user input variable name
+4. output "Your name is ..." in terminal
+5. check docker version
+6. check git version
+7. remove old Dockerfile
+8. create new Dockerfile empty
+9. write in file Dockerfile echo string to create a valid docker image
+10. build image
+11. run container
+12. output logs container
+13. remove all containers created (normally only one)
+14. remove all images created (normally only one)
+
+```bash
+#!bin/sh
+
+script() {
+    echo "Start" # Output Start in terminal
+
+    # Receive variable by user input
+    echo "Put your name"      # Output Put your name in terminal
+    read name                 # Wait/Receive input variable name by user
+    echo Your name is ${name} # Output Your name is variable name
+
+    # Execute commands of another programs (like docker, git...)
+    docker -v # docker version
+    git --version # git version
+
+
+    rm Dockerfile # Remove old Dockerfile
+    touch Dockerfile # Create Dockerfile
+    echo "FROM alpine:3.14" >>Dockerfile # Input echo string inside file
+    echo 'ENTRYPOINT ["echo", "Container running 👍 ( ͡° ͜ʖ ͡°)"]' >>Dockerfile # Input echo string inside file
+    echo 'CMD ["'${name}'"] && /dev/null' >>Dockerfile # Input echo string inside file
+
+    # Build and Execute Docker Container
+    imageName="${name}-docker-image" # docker image name variable
+    docker build -t ${imageName} .   # build image
+    docker images                    # list images
+
+    # Generate utils variables
+    timestamp=$(date +%s)                                 # create variable timestamp to attach in container name
+    containerName="${name}-docker-container-${timestamp}" # variable container name to assign in run command
+
+    # Running command and see logs
+    echo "-------"
+    echo "Start: " && docker run -d --name ${containerName} ${imageName} # running container
+    echo "-------"
+    echo "Logs: " && docker logs ${containerName} # output logs container
+    echo "-------"
+    # Remove all Containers
+    containers=$(docker ps -a --format "{{.Names}}" | grep "${name}-docker-container") # list all containers created in this script
+    docker rm -f ${containers}                                                         # remove all containers created in this script
+    docker ps -a                                                                       # list all containers
+
+    # Remove all Images
+    imgs=$(docker images --format "{{.Repository}}" | grep "${imageName}") # imgs created repository
+    docker rmi -f ${imgs} # Remove images in imgs variable
+}
+
+script | tee ex.log # fill log file called ex.log
+```
+
+---
+
+Sources: <br />
+- https://www.shellscript.sh
+- https://tldp.org/LDP/abs/html/comparison-ops.html
+- https://en.wikipedia.org/wiki/Tee_(command)
+- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
