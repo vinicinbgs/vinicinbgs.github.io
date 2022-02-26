@@ -1,0 +1,10 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.hightlight {
+    background-color: #ffff80;
+    text-align: center;
+    border-radius: 50px;
+    border: 2px solid #1c1c1c;
+}

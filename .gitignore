@@ -72,3 +72,5 @@ public
 .DS_Store
 
 storybook-static
+
+test.sh
