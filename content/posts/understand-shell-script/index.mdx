@@ -37,7 +37,7 @@ fi
   - 2.2 [While](#loops-while)
 - 3. [Comparison](#comparison)
   - 3.1 [String Comparison](#string-comparison)
-  - 3.2 [Integer Comparison](#integer-comparison)
+  - 3.2 [Numbers Comparison](#numbers-comparison)
 - 4. [Final Example](#final-example)
 - 5. [Sources](#sources)
 
@@ -45,12 +45,14 @@ fi
 ## Goal:
 ---
 My intention is to give to you an idea of how you can create your own shell script commands 
-to automate some tasks and show to you some references (https://www.shellscript.sh).
+to automate some tasks and show to you some references (https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) (https://www.shellscript.sh).
 
-Shell script has Variables, Repetition Structures, Decision Structures and commands UNIX so you can create
+Shell script has Variables, Repetition Structures, Conditional Statements and commands UNIX so you can create
 scripts to use as entrypoint.sh on docker container or just to automate one boring manual task in your S.O.
 
-e.g: This blog is deployed with this [Shell Script](https://github.com/vinicinbgs/vinicinbgs.github.io/blob/main/deploy.sh) that generate a build, commit, push to gh-pages branch in my repo
+e.g: This blog is deployed with this [Shell Script](https://github.com/vinicinbgs/vinicinbgs.github.io/blob/main/deploy.sh) that generate a build, commit, push to gh-pages branch in my repo.
+
+You can use CLI commands from others softwares installed in your machine, like GIT, Docker, node, npm...
 
 If you understand the power of shell script your imagination will be the limit.
 
@@ -65,7 +67,7 @@ operating system. It is called a shell script because it combines a sequence of 
 that would otherwise have to be typed into the keyboard one at a time, into a single script.
 
 <p class="hightlight">
-  In this case our computer program is <ins>example.sh</ins> file
+  In our case the computer program is <ins>example.sh</ins> file
 </p>
 <br />
 <h4>
@@ -81,7 +83,7 @@ chmod +x example.sh
 - **chmod +x**: will give permission to execute file script
 
 <p class="hightlight">
-  You can use <strong>touch</strong> and <strong>chmod</strong> inside your shell script file too
+  You can use <strong>touch</strong> and <strong>chmod</strong> commands inside your shell script file too
 </p>
 
 <br />
@@ -122,6 +124,9 @@ echo "First Line">> new_file.txt # append in new_file.txt the text First Line
 
 ## <a name="variables"></a> 2. Variables
 ---
+A variable is a character string to which we assign a value. 
+The value assigned could be a number, text, filename, device, or any other type of data.
+
 ### 2.1 <a name="variables-declare"></a> Declare Variable
 
 ```bash
@@ -161,6 +166,8 @@ Hi, Vinicius
 
 ## <a name="loops"></a> 3. Loops
 ---
+Loops will enable you to execute one or more commands repeatedly
+
 ### <a name="loops-for"></a> 3.1 For
 
 ```bash
@@ -187,7 +194,9 @@ done
 
 ### <a name="comparison"></a> 4. Comparison
 ---
-#### <a name="integer-comparison"></a> 4.1 Integer comparison
+Sometimes you need to check if one variable is equal or not to another or greater/less... <br />
+In this section you can check ways to compare numbers and strings variables.
+#### <a name="numbers-comparison"></a> 4.1 Numbers Comparison
 ```bash
 # is equal to:
 if [ "$a" -eq "$b" ]
@@ -222,7 +231,7 @@ if [ "$a" -le "$b" ]
 
 <br />
 
-#### <a name="string-comparison"></a> 4.2 String comparison
+#### <a name="string-comparison"></a> 4.2 String Comparison
 ```bash
 # is equal to: 
 if [ "$a" = "$b" ]
@@ -260,6 +269,9 @@ fi
 
 ### <a name="final-example"></a> 5. Final example.sh
 ---
+Copy the script below and run it on your machine and after use, edit to your needs
+
+[Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
 ```bash
 #!bin/sh
 
@@ -326,12 +338,17 @@ Steps:
 13. remove all containers created (normally only one)
 14. remove all images created (normally only one)
 ---
+<p class="hightlight">
+  Use SOURCES to study and deepen your knowledge
+</p>
 
 <a name="sources"></a> 
 
 Sources: <br />
+- https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 - https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh
 - https://www.shellscript.sh
+- https://www.tutorialspoint.com/unix/
 - https://tldp.org/LDP/abs/html/comparison-ops.html
 - https://en.wikipedia.org/wiki/Tee_(command)
 - https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
