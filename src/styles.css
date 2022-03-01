@@ -3,8 +3,10 @@ html {
 }
 
 .hightlight {
-    background-color: #ffff80;
+    background-color: var(--theme-ui-colors-info);
     text-align: center;
-    border-radius: 50px;
-    border: 2px solid #1c1c1c;
+    border-radius: 10px;
+    border: none;
+    color: var(--theme-ui-colors-white);
+    font-weight: bold;
 }
