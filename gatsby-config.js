@@ -49,6 +49,17 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'G-R4PQ4J3QY1' // Google Analytics / GA
+        ],
+        pluginConfig: {
+          head: true
+        }
+      }
+    },
+    {
       resolve: `gatsby-omni-font-loader`,
       options: {
         enableListener: true,

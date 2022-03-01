@@ -27,37 +27,51 @@ fi
 
 #### Summary:
 [Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
-- [Introduction](#intro)
-- 1. [Example](#example)
+- 1. [Introduction](#intro)
   - 1.1 [Create Example](#create-example)
   - 1.2 [Write Example](#write-example)
   - 1.3 [Run Example](#run-example)
----
+  - 1.4 [Touch Example](#create-new-file-example)
 - 2. [Loops](#loops)
   - 2.1 [For](#loops-for)
   - 2.2 [While](#loops-while)
----
 - 3. [Comparison](#comparison)
   - 3.1 [String Comparison](#string-comparison)
-  - 3.2 [Integer Comparison](#integer-comparison)
----
+  - 3.2 [Numbers Comparison](#numbers-comparison)
 - 4. [Final Example](#final-example)
+- 5. [Sources](#sources)
+
+---
+## Goal:
+---
+My intention is to give to you an idea of how you can create your own shell script commands 
+to automate some tasks and show to you some references (https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) (https://www.shellscript.sh).
+
+Shell script has Variables, Repetition Structures, Conditional Statements and commands UNIX so you can create
+scripts to use as entrypoint.sh on docker container or just to automate one boring manual task in your S.O.
+
+e.g: This blog is deployed with this [Shell Script](https://github.com/vinicinbgs/vinicinbgs.github.io/blob/main/deploy.sh) that generate a build, commit, push to gh-pages branch in my repo.
+
+You can use CLI commands from others softwares installed in your machine, like GIT, Docker, node, npm...
+
+If you understand the power of shell script your imagination will be the limit.
+
+without further ado...
 
 ## <a name="intro"></a> 1. Introduction
-
+---
 What is Shell Script?
 
-- A computer program designed to run in Unix shell, a command-line interpreter.
-
+- A shell script is a text file that contains a sequence of commands for a UNIX-based 
+operating system. It is called a shell script because it combines a sequence of commands, 
+that would otherwise have to be typed into the keyboard one at a time, into a single script.
 
 <p class="hightlight">
-  In this case our computer program is <ins>example.sh</ins> file
+  In our case the computer program is <ins>example.sh</ins> file
 </p>
-
----
-
+<br />
 <h4>
-  <a name="create-example"></a>  1.1 Create a file called <ins style={{ color: "red" }}>example.sh</ins> using in terminal this command:
+  <a name="create-example"></a>  1.1 Create a file called <ins>example.sh</ins> using terminal, follow:
 </h4>
 
 ```bash
@@ -68,8 +82,13 @@ chmod +x example.sh
 - **touch**: will create the file
 - **chmod +x**: will give permission to execute file script
 
+<p class="hightlight">
+  You can use <strong>touch</strong> and <strong>chmod</strong> commands inside your shell script file too
+</p>
+
+<br />
 <h4>
-  <a name="write-example"></a> 1.2 Open file <ins style={{ color: "red" }}>example.sh</ins> in your preferred ide
+  <a name="write-example"></a> 1.2 Open file <ins>example.sh</ins> in your preferred IDE
 </h4>
 
 ```bash
@@ -80,15 +99,33 @@ echo "Start" # this command will output in terminal Start string
 
 - `#!/bin/sh` tells Unix that the file is to be executed by /bin/sh.
 
+<br />
 <h4>
-  <a name="run-example"></a> 1.3 Running file <ins style={{ color: "red" }}>example.sh</ins> in terminal
+  <a name="run-example"></a> 1.3 Running file <ins>example.sh</ins> in terminal
 </h4>
 
 ```sh
 sh example.sh
 ```
----
+
+<br />
+<h4>
+  <a name="create-new-file-example"></a> 1.4 Create a new file using shell script
+</h4>
+
+```bash
+#!/bin/sh
+echo "Start"
+touch new_file.txt # create new file called new_file.txt
+echo "First Line">> new_file.txt # append in new_file.txt the text First Line
+```
+
+<br />
+
 ## <a name="variables"></a> 2. Variables
+---
+A variable is a character string to which we assign a value. 
+The value assigned could be a number, text, filename, device, or any other type of data.
 
 ### 2.1 <a name="variables-declare"></a> Declare Variable
 
@@ -112,7 +149,7 @@ Hi, my name is Vinicius
 echo "What is your name?"
 read VARIABLE_MY_NAME
 
-VARIABLE_TEXT="Hi, my name is"
+VARIABLE_TEXT="Hi,"
 
 echo "$VARIABLE_TEXT $VARIABLE_MY_NAME"
 ```
@@ -125,9 +162,11 @@ What is your name?
 Hi, Vinicius
 ```
 
----
+<br />
 
 ## <a name="loops"></a> 3. Loops
+---
+Loops will enable you to execute one or more commands repeatedly
 
 ### <a name="loops-for"></a> 3.1 For
 
@@ -151,9 +190,13 @@ do
 done
 ```
 
-### <a name="comparison"></a> 4. Comparison
+<br />
 
-#### <a name="integer-comparison"></a> 4.1 Integer comparison
+### <a name="comparison"></a> 4. Comparison
+---
+Sometimes you need to check if one variable is equal or not to another or greater/less... <br />
+In this section you can check ways to compare numbers and strings variables.
+#### <a name="numbers-comparison"></a> 4.1 Numbers Comparison
 ```bash
 # is equal to:
 if [ "$a" -eq "$b" ]
@@ -186,7 +229,9 @@ if [ "$a" -le "$b" ]
 (("$a" >= "$b"))
 ```
 
-#### <a name="string-comparison"></a> 4.2 String comparison
+<br />
+
+#### <a name="string-comparison"></a> 4.2 String Comparison
 ```bash
 # is equal to: 
 if [ "$a" = "$b" ]
@@ -220,27 +265,13 @@ else
 fi
 ```
 
----
+<br />
 
 ### <a name="final-example"></a> 5. Final example.sh
+---
+Copy the script below and run it on your machine and after use, edit to your needs
 
-Steps:
-
-1. output "start" in terminal
-2. output "Put your name" in terminal
-3. wait user input variable name
-4. output "Your name is ..." in terminal
-5. check docker version
-6. check git version
-7. remove old Dockerfile
-8. create new Dockerfile empty
-9. write in file Dockerfile echo string to create a valid docker image
-10. build image
-11. run container
-12. output logs container
-13. remove all containers created (normally only one)
-14. remove all images created (normally only one)
-
+[Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
 ```bash
 #!bin/sh
 
@@ -290,12 +321,35 @@ script() {
 
 script | tee ex.log # fill log file called ex.log
 ```
+Steps:
 
+1. output "start" in terminal
+2. output "Put your name" in terminal
+3. wait user input variable name
+4. output "Your name is ..." in terminal
+5. check docker version
+6. check git version
+7. remove old Dockerfile
+8. create new Dockerfile empty
+9. write in file Dockerfile echo string to create a valid docker image
+10. build image
+11. run container
+12. output logs container
+13. remove all containers created (normally only one)
+14. remove all images created (normally only one)
 ---
+<p class="hightlight">
+  Use SOURCES to study and deepen your knowledge
+</p>
+
+<a name="sources"></a> 
 
 Sources: <br />
+- https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 - https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh
 - https://www.shellscript.sh
+- https://www.tutorialspoint.com/unix/
 - https://tldp.org/LDP/abs/html/comparison-ops.html
 - https://en.wikipedia.org/wiki/Tee_(command)
 - https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+- https://www.techtarget.com/searchdatacenter/definition/shell-script#:~:text=A%20shell%20script%20is%20a,time%2C%20into%20a%20single%20script
