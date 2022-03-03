@@ -10,6 +10,7 @@ export interface IRepository {
   html_url: string;
   language: string;
   topics: Array<string>;
+  backgroundColor?: string;
 }
 
 const RepositoryCard = ({
@@ -18,12 +19,13 @@ const RepositoryCard = ({
   stargazers_count,
   html_url,
   language,
-  topics
+  topics,
+  backgroundColor
 }: IRepository) => {
   return (
     <Card data-type="repository">
       <Link href={html_url} target="_blank">
-        <CardHeader>
+        <CardHeader backgroundColor={backgroundColor}>
           <Title>{name}</Title>
         </CardHeader>
         <Description>{description}</Description>

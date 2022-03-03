@@ -28,12 +28,20 @@ const Repositories = () => {
         </Title>
         <PageDivided>
           {repositories.map((repo) => (
-            <ReposityCard key={repo.id} {...repo} />
+            <ReposityCard
+              key={repo.id}
+              {...repo}
+              backgroundColor={randomBackgroundColor()}
+            />
           ))}
         </PageDivided>
       </Section>
     </Layout>
   );
+};
+
+const randomBackgroundColor = (): string => {
+  return '#3e31b0';
 };
 
 export default Repositories;

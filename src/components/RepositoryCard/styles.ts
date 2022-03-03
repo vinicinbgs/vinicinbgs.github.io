@@ -8,7 +8,7 @@ const Card = styled.div`
   box-shadow: 0 0 2px var(--theme-ui-colors-text);
   border-radius: 10px;
   word-wrap: break-word;
-  height: 200px;
+  max-height: 300px;
   overflow: auto;
 
   @media (max-width: 800px) {
@@ -52,10 +52,15 @@ const Title = styled.h4`
   }
 `;
 
-const CardHeader = styled.div`
-  background-color: var(--theme-ui-colors-secondary);
+type CardHeaderProps = {
+  backgroundColor?: string;
+};
+
+const CardHeader = styled.div<CardHeaderProps>`
+  background-color: ${(props) =>
+    props.backgroundColor ?? 'var(--theme-ui-colors-secondary)'};
   color: white;
-  border-radius: 2px;
+  border-radius: 10px;
 `;
 
 export { Card, Link, Description, Title, CardHeader };

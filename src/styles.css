@@ -2,6 +2,10 @@ html {
     scroll-behavior: smooth;
 }
 
+h3, h4, h5 {
+    font-weight: normal !important;
+}
+
 .hightlight {
     background-color: var(--theme-ui-colors-info);
     text-align: center;
@@ -9,4 +13,6 @@ html {
     border: none;
     color: var(--theme-ui-colors-white);
     font-weight: bold;
+    padding: 6px 0;
+    font-size: 15px;
 }
