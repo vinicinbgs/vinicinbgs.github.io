@@ -1,29 +1,13 @@
 ---
-title: 'Understand Shell Script and Create one automated script'
+title: 'Understand Shell Script'
 date: 2022-02-21
 slug: '/understand-shell-script'
-canonicalUrl: 'https://random-blog-about-curses.com'
 description: 'Ill show to you how works a shell script and we go create one example'
+tags: 
+  - technology
+  - shell script
+  - automation
 ---
-
-
-```bash
-#!/bin/sh
-# This is a comment!
-echo Hello World        # This is a comment, too!
-
-if command1
-    then
-        command2
-
-    else
-        command3
-fi
-```
-
-<legend style={{ textAlign: 'right' }}>
-  - This snippet is an illustration -
-</legend>
 
 #### Summary:
 [Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
@@ -56,7 +40,7 @@ You can use CLI commands from others softwares installed in your machine, like G
 
 If you understand the power of shell script your imagination will be the limit.
 
-without further ado...
+Without further ado...
 
 ## <a name="intro"></a> 1. Introduction
 ---
@@ -65,6 +49,8 @@ What is Shell Script?
 - A shell script is a text file that contains a sequence of commands for a UNIX-based 
 operating system. It is called a shell script because it combines a sequence of commands, 
 that would otherwise have to be typed into the keyboard one at a time, into a single script.
+
+A Unix shell is both a command interface and a programming language
 
 <p class="hightlight">
   In our case the computer program is <ins>example.sh</ins> file
@@ -321,6 +307,7 @@ script() {
 
 script | tee ex.log # fill log file called ex.log
 ```
+
 Steps:
 
 1. output "start" in terminal
@@ -338,18 +325,20 @@ Steps:
 13. remove all containers created (normally only one)
 14. remove all images created (normally only one)
 ---
-<p class="hightlight">
+<p class="hightlight" style={{ backgroundColor: 'yellow', color: 'black' }}>
   Use SOURCES to study and deepen your knowledge
 </p>
 
 <a name="sources"></a> 
 
 Sources: <br />
-- https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
+- https://www.gnu.org/software/bash/manual/html_node/index.html (shell)
+- https://www.shellscript.sh (shell)
+- https://tldp.org/LDP/abs/html/comparison-ops.html (shell)
+- https://www.tutorialspoint.com/unix/ (shell)
+- https://www.oreilly.com/openbook/debian/book/ch13_03.html (shell)
+- https://en.wikipedia.org/wiki/Tee_(command) (shell)
+- https://www.techtarget.com/searchdatacenter/definition/shell-script (shell)
+- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/ (docker)
+---
 - https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh
-- https://www.shellscript.sh
-- https://www.tutorialspoint.com/unix/
-- https://tldp.org/LDP/abs/html/comparison-ops.html
-- https://en.wikipedia.org/wiki/Tee_(command)
-- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
-- https://www.techtarget.com/searchdatacenter/definition/shell-script#:~:text=A%20shell%20script%20is%20a,time%2C%20into%20a%20single%20script
