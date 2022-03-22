@@ -6,8 +6,7 @@ h3, h4, h5 {
     font-weight: normal !important;
 }
 
-.hightlight {
-    background-color: var(--theme-ui-colors-info);
+.hightlight {    
     text-align: center;
     border-radius: 10px;
     border: none;
@@ -15,4 +14,19 @@ h3, h4, h5 {
     font-weight: bold;
     padding: 6px 0;
     font-size: 15px;
+}
+
+.bg-info {
+    background-color: var(--theme-ui-colors-info);
+    color: var(--theme-ui-colors-white);
+}
+
+.bg-warning {
+    background-color: var(--theme-ui-colors-warning);
+    color: var(--theme-ui-colors-black);
+}
+
+.bg-danger {
+    background-color: var(--theme-ui-colors-danger);
+    color: var(--theme-ui-colors-black);
 }
