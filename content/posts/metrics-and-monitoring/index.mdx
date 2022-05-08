@@ -1,0 +1,57 @@
+---
+title: 'Metrics and Monitoring'
+date: 2022-05-08
+slug: '/metrics-and-monitoring'
+description: 'How can we listening the software statistics?'
+tags: 
+  - metrics
+  - monitoring
+  - telemetry
+---
+#### SUMMARY
+- 1. [What are Metrics?](#what-are-metrics)
+- 2. [What is Monitoring?](#what-is-monitoring)
+- 3. [What is Telemetry?](#what-is-telemetry)
+
+---
+# <a name="what-are-metrics"></a> What are Metrics?
+
+Metrics are values captured on your systems at a specific point in time. <br />
+*(i.e) the number of users currently logged in to a web application.*
+
+Can be collected once per second, one per minute or at another regular interval to monitor a system over time.
+
+Two important categories of metrics:
+- Work Metrics
+- Resource Metrics
+
+**Work Metrics**
+- **THROUGHPUT:** is the amount of work the system is doing per unit time. Throughput is usually recorded as an absolute number.
+- **SUCCESS:** metrics represent the percentage of work that was executed successfully.
+- **ERROR:** metrics capture the number of erroneous results, usually expressed as a rate of errors per unit time or normalized by the throughput to yield errors per unit of work. Error metrics are often captured separately from success metrics when there are several potential sources of error, some of which are more serious or actionable than others.
+- **PERFORMANCE:** metrics quantify how efficiently a component is doing its work. The most common performance metric is latency, which represents the time required to complete a unit of work. Latency can be expressed as an average or as a percentile, such as “99% of requests returned within 0.1s”.
+
+**Resource Metrics**
+- **UTILIZATION:** is the percentage of time that the resource is busy, or the percentage of the resource's capacity that is in use.
+- **SATURATION:** is a measure of the amount of requested work that the resource cannot yet service, often queued.
+- **ERROR:** represent internal errors that may not be observable in the work the resource produces.
+- **AVAILABILITY:** represents the percentage of time that the resource responded to requests. This metric is only well-defined for resources that can be actively and regularly checked for availability.
+
+#### Good Data
+- **Well-understood.** You should be able to quickly determine how each metric or event was captured and what it represents. During an outage you won’t want to spend time figuring out what your data means. Keep your metrics and events as simple as possible, use standard concepts described above, and name them clearly.
+- **Granular.** If you collect metrics too infrequently or average values over long windows of time, you may lose the ability to accurately reconstruct a system’s behavior. For example, periods of 100% resource utilization will be obscured if they are averaged with periods of lower utilization. Collect metrics for each system at a frequency that will not conceal problems, without collecting so often that monitoring becomes perceptibly taxing on the system (the observer effect) or creates noise in your monitoring data by sampling time intervals that are too short to contain meaningful data.
+- **Tagged by scope.** Each of your hosts operates simultaneously in multiple scopes, and you may want to check on the aggregate health of any of these scopes, or their combinations. For example: how is production doing in aggregate? How about production in the Northeast U.S.? How about a particular role or service? It is important to retain the multiple scopes associated with your data so that you can alert on problems from any scope, and quickly investigate outages without being limited by a fixed hierarchy of hosts.
+- **Long-lived.** If you discard data too soon, or if after a period of time your monitoring system aggregates your metrics to reduce storage costs, then you lose important information about what happened in the past. Retaining your raw data for a year or more makes it much easier to know what “normal” is, especially if your metrics have monthly, seasonal, or annual variations.
+
+# <a name="what-is-monitoring"></a> What is Monitoring?
+Monitoring is the process of collecting logs and metrics data to observe the behavior of software and detect abnormal behaviors.
+
+# <a name="what-is-telemetry"></a> What is Telemetry?
+Telemetry is the feedback you get from your production systems that tells
+you what's going on in there, all to improve your ability to make decisions
+about your production systems.
+
+---
+#### Sources
+- [datadog](https://www.datadoghq.com/blog/monitoring-101-collecting-data/)
+- [apm](https://upload.wikimedia.org/wikipedia/commons/6/6a/APM_Conceptual_Framework.jpg) (REMOVE)
