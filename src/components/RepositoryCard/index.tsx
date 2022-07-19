@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card, Link, Description, Title, CardHeader } from './styles';
 import { BsStarFill } from 'react-icons/bs';
+import { SkeletonText } from '../../global.styles';
 
 export interface IRepository {
   id?: number;
@@ -40,4 +41,18 @@ const RepositoryCard = ({
     </Card>
   );
 };
+
+export const RepositoryCardSkeleton = () => {
+  return (
+    <Card data-type="repository">
+      <CardHeader backgroundColor={'#e6e6e6'}>
+        <SkeletonText />
+      </CardHeader>
+      <SkeletonText />
+      <SkeletonText />
+      <SkeletonText />
+    </Card>
+  );
+};
+
 export default RepositoryCard;
