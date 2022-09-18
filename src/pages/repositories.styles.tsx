@@ -28,4 +28,10 @@ const NextButton = styled(Button)`
   margin-left: 5px;
 `;
 
-export { Toolbar, PreviousButton, NextButton };
+const NotFoundRepositories = styled.p`
+  font-size: 28px;
+  font-weight: 620;
+  color: #5e5e5e;
+`;
+
+export { Toolbar, PreviousButton, NextButton, NotFoundRepositories };
