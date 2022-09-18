@@ -5,14 +5,19 @@ import RepositoryCard, {
   RepositoryCardSkeleton
 } from '../components/RepositoryCard';
 import { Section, Title, PageDivided } from '../global.styles';
-import { BsGithub } from 'react-icons/bs';
+import {
+  BsGithub,
+  BsArrowRightCircle,
+  BsArrowLeftCircle
+} from 'react-icons/bs';
+import { Toolbar, PreviousButton, NextButton } from './repositories.styles';
 
 const Repositories = () => {
   const [repositories, setRepositories] = useState<IRepository[]>([]);
 
   const fetchRepos = async (): Promise<IRepository[]> => {
     const gitRepos = await fetch(
-      `${process.env.GATSBY_API_GITHUB}/users/vinicinbgs/repos`
+      `${process.env.GATSBY_API_GITHUB}/users/vinicinbgs/repos?per_page=100`
     );
     return await gitRepos.json();
   };
@@ -27,6 +32,7 @@ const Repositories = () => {
     });
   }, []);
 
+  // Skeleton Shimmer Effect
   if (repositories.length == 0) {
     return (
       <Layout>
@@ -50,6 +56,16 @@ const Repositories = () => {
         <Title id="repositories">
           <BsGithub /> Repositories
         </Title>
+        <Toolbar>
+          <PreviousButton>
+            <BsArrowLeftCircle />
+            &nbsp; Previous
+          </PreviousButton>
+          <NextButton>
+            Next &nbsp;
+            <BsArrowRightCircle />
+          </NextButton>
+        </Toolbar>
         <PageDivided>
           {repositories.map((repo) => (
             <RepositoryCard
