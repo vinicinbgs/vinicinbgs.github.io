@@ -55,9 +55,7 @@ jobs:
           wait-on: 'http://localhost:8000'
           browser: chrome
           headless: false
-
-      - name: Cypress Coverage
-        run: yarn cy:run --config-file=cypress.config.ts
+          config-file: cypress.config.ts
 
       - uses: actions/upload-artifact@v2
         if: failure()
