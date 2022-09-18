@@ -18,6 +18,10 @@ const Button = styled.button`
   display: inline-flex;
   align-items: center;
   font-weight: 600;
+
+  &:hover {
+    filter: invert(0.15);
+  }
 `;
 
 const PreviousButton = styled(Button)`
