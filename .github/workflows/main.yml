@@ -20,10 +20,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Create .env and .nyc_output
+      - name: Create .env
         run: |
           cp .env.example .env
-          mkdir .nyc_output
 
       - name: Cache node modules
         id: cache-nodemodules
@@ -52,13 +51,11 @@ jobs:
           install: true
           install-command: yarn
           build: yarn build
-          start: yarn serve -p 9001
-          wait-on: 'http://localhost:9001'
+          start: yarn serve -p 8000
+          wait-on: 'http://localhost:8000'
           browser: chrome
           headless: false
-
-      - name: Cypress Coverage
-        run: yarn cy:report:text
+          config-file: cypress.config.ts
 
       - uses: actions/upload-artifact@v2
         if: failure()
