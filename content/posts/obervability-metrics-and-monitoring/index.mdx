@@ -1,26 +1,52 @@
 ---
-title: 'Metrics and Monitoring'
+title: 'Observability, Metrics and Monitoring'
 date: 2022-05-08
-slug: '/metrics-and-monitoring'
+slug: '/observability-metrics-and-monitoring'
 description: 'How can we listening the software statistics?'
 tags: 
+  - observability
   - metrics
   - monitoring
   - telemetry
 ---
 #### SUMMARY
-- 1. [What are Metrics?](#what-are-metrics)
-- 2. [What is Monitoring?](#what-is-monitoring)
-- 3. [What is Telemetry?](#what-is-telemetry)
-- 4. [What is Observability?](#what-is-observability)
+- [What is Observability?](#what-is-observability)
+  - 1. [What are Logs?](#what-are-logs)
+  - 2. [What are Metrics?](#what-are-metrics)
+  - 3. [What is Distributed Tracing?](#what-is-distributed-tracing)
+- [What is Monitoring?](#what-is-monitoring)
 
 > “You can't manage what you can't measure.”
 > 
 > -- <cite>Peter Drucker</cite>
 
 ---
-# <a name="what-are-metrics"></a> What are Metrics?
 
+# <a name="what-is-observability"></a> What is Observability?
+In Control Theory, Observability is a measure of internal states of system can be inferred from the knowledge of its external outputs.
+Observability enables us to ask why.
+
+Lets us understand a system from the outside, by letting us ask questions about that system without knowing its inner workings.
+Furthermore allows us to easily troubleshoot and handle novel problems and helps us answer the question "Why is this happening".
+In order to be able to ask those questions of a system the application must be properly instrumented.
+That is the application code must emit signals such as traces, metrics and logs. 
+An application is properly instrumented when developers don't need to add more instrumentation to troubleshoot an issue, because they have all of the information they need.
+
+Three Pillars:
+- Metrics
+- Logs (a register of an event that occurred)
+- Tracing
+
+## <a name="what-are-logs"></a> 1. What are Logs?
+Logs are either events that occurred in the software. Logging is the act of keeping a log.
+Normally in a log record its possible find *timestamp*, *message*, *level* and *context data*.
+Logs can be divided:
+- Event Logs
+- Transaction Logs
+- Message Logs
+- Server Logs
+
+## <a name="what-are-metrics"></a> 2. What are Metrics?
 Metrics are values captured on your systems at a specific point in time. <br />
 *(i.e) the number of users currently logged in to a web application.*
 
@@ -48,26 +74,25 @@ Two important categories of metrics:
 - **Tagged by scope.** Each of your hosts operates simultaneously in multiple scopes, and you may want to check on the aggregate health of any of these scopes, or their combinations. For example: how is production doing in aggregate? How about production in the Northeast U.S.? How about a particular role or service? It is important to retain the multiple scopes associated with your data so that you can alert on problems from any scope, and quickly investigate outages without being limited by a fixed hierarchy of hosts.
 - **Long-lived.** If you discard data too soon, or if after a period of time your monitoring system aggregates your metrics to reduce storage costs, then you lose important information about what happened in the past. Retaining your raw data for a year or more makes it much easier to know what “normal” is, especially if your metrics have monthly, seasonal, or annual variations.
 
+## <a name="what-is-distributed-tracing"></a> 3. What is Distributed Tracing?
+Is a strange union of metrics and logging - the cardinality of logging with the analytical power of metrics.
+Tracing enables explicit automation to add entire execution flows to the presented context when you look to see what 
+happened during an execution logging show specific events as they happened, with some attributes to provide context around the event.
+Metrics gives you a broad overview of now the system is performing. Tracing uses the extra context you should have an your logged events to create a linked view of executions.
+
+---
+
 # <a name="what-is-monitoring"></a> What is Monitoring?
 Monitoring is the process of collecting logs and metrics data to observe the behavior of software and detect abnormal behaviors.
 Monitoring is based to know with antecedence which signals you want to monitor.
 Monitoring shows something that is wrong.
 
-# <a name="what-is-telemetry"></a> What is Telemetry?
-Telemetry is the feedback you get from your production systems that tells
-you what's going on in there, all to improve your ability to make decisions
-about your production systems.
-
-# <a name="what-is-observability"></a> What is Observability?
-In Control Theory, Observability is a measure of internal states of system can be inferred from the knowledge of its external outputs.
-Observability enables us to ask why.
-
-Three Pillars:
-- Metrics
-- Logs (a register of an event that occurred)
-- Tracing
+## <a name="what-is-security-information-event-management"></a> What is Security Information Event Management (SIEM)?
+A specialized telemetry system for use by security and compliance teams, and a specilization of centralized logging and metrics. 
+The technique was in use long before the terms was formalized in the mid 2000.
+It's a solution to help the organization detect, analyze and act against security issues before it harms the company.
 
 ---
 #### Sources
-- [datadog](https://www.datadoghq.com/blog/monitoring-101-collecting-data/)
-- [apm](https://upload.wikimedia.org/wikipedia/commons/6/6a/APM_Conceptual_Framework.jpg) (REMOVE)
+- <a target="_blank" href="https://www.amazon.com.br/Software-Telemetry-Reliable-Logging-Monitoring/dp/161729814X">Software Telemetry: Reliable Logging and Monitoring</a>
+- <a target="_blank" href="https://www.datadoghq.com/blog/monitoring-101-collecting-data/">Datadog</a>
