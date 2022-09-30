@@ -26,7 +26,7 @@ const Repositories = () => {
     setLoading(true);
 
     const gitRepos = await fetch(
-      `${process.env.GATSBY_API_GITHUB}/users/vinicinbgs/repos?page=${actualPage}&per_page=30`
+      `https://api.github.com/users/vinicinbgs/repos?page=${actualPage}&per_page=30`
     );
 
     const repos = await gitRepos.json();
