@@ -1,0 +1,48 @@
+# Challenges of Modules-Monolith
+- Defining Modules & Bounded Contexts
+- Communication between modules
+- Module **data independence** and **isolation**
+
+# Defining Modules
+- Modules represent cohesive sets of functionalities
+- Bounded Context
+    - The boundary within a domain where a particular domain model applies
+- Each Module can be treated like a separate "application"
+
+# Modules Architecture
+- Layered architecture
+- Clean architecture
+- Vertical slice architecture
+
+# Module Communication
+## Method Calls
+- Fast, in-memory calls
+- Only allowed to call the public API of other Modules
+#### Trade-offs
+- Introduces runtime coupling
+- Requires new implementation when extracting Module into separate service
+
+Orders Module -- API Method Call --> Catalog Module
+
+## Messaging
+- Asynchronous
+- Possible to implement RPC-Like Calls
+   - Modules send request/response messages
+- Define interfaces for message contracts
+   - Shared library
+- Completely decoupled
+- Easy to extract Modules into separate services
+#### Trade-offs
+- Downside performance because all communication is done through messages
+
+# Module Data Independence
+- Every Module is responsible for its own data
+- Querying data directly from other Modules is not allowed
+- There are different levels of data isolation between Modules
+
+
+# Module Data Isolation
+- Same database (no isolation)
+- Same database, different schema
+- Different databases
+- Different databases type (DBMS)
