@@ -46,3 +46,9 @@ Orders Module -- API Method Call --> Catalog Module
 - Same database, different schema
 - Different databases
 - Different databases type (DBMS)
+
+# Lessons Learned
+- Spend more time defining Module boundaries - it will pay dividends later
+- Eventual consistency is great, but you need to plan for it
+- Consider merging "chatty" (talk with other frequently) Modules
+- Carefully plan how you will share data between Modules
