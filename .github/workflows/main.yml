@@ -35,7 +35,7 @@ jobs:
 
       - name: Install modules
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install
             
       - name: Run unit tests
         run: yarn test:text
