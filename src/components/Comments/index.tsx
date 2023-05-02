@@ -26,7 +26,7 @@ const Comments = ({ path }: Props) => {
     script.setAttribute('issue-term', path ?? '/homepage');
 
     document.getElementById('comments')?.appendChild(script);
-  });
+  }, []);
 
   return <div id="comments"></div>;
 };
