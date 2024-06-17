@@ -12,7 +12,7 @@ module.exports = {
     siteTitleAlt: `Software Engineering Blog`,
     siteHeadline: `@vinicinbgs blog`,
     siteUrl: `https://vinicinbgs.github.io`,
-    siteDescription: `I hope to share some techs knowledgment and contribute to the community.`,
+    siteDescription: `I hope to share some techs insights and contribute to the community.`,
     siteLanguage: `en`,
     siteImage: `/banner.jpg`,
     author: `@vinicinbgs`
