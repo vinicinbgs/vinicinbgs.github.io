@@ -48,7 +48,7 @@ jobs:
           install-command: yarn
           build: yarn build
           start: yarn serve -p 8000
-          wait-on: 'http://localhost:8000'
+          wait-on: 'http://[::1]:8000'
           browser: chrome
           headless: false
           config-file: cypress.config.ts
