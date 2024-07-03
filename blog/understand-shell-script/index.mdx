@@ -1,0 +1,344 @@
+---
+title: 'Understand Shell Script'
+date: 2022-02-21
+slug: '/understand-shell-script'
+description: 'Ill show to you how works a shell script and we go create one example'
+tags: 
+  - technology
+  - shell script
+  - automation
+---
+
+#### Summary:
+[Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
+- 1. [Introduction](#intro)
+  - 1.1 [Create Example](#create-example)
+  - 1.2 [Write Example](#write-example)
+  - 1.3 [Run Example](#run-example)
+  - 1.4 [Touch Example](#create-new-file-example)
+- 2. [Loops](#loops)
+  - 2.1 [For](#loops-for)
+  - 2.2 [While](#loops-while)
+- 3. [Comparison](#comparison)
+  - 3.1 [String Comparison](#string-comparison)
+  - 3.2 [Numbers Comparison](#numbers-comparison)
+- 4. [Final Example](#final-example)
+- 5. [Sources](#sources)
+
+---
+## Goal:
+---
+My intention is to give to you an idea of how you can create your own shell script commands 
+to automate some tasks and show to you some references (https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) (https://www.shellscript.sh).
+
+Shell script has Variables, Repetition Structures, Conditional Statements and commands UNIX so you can create
+scripts to use as entrypoint.sh on docker container or just to automate one boring manual task in your S.O.
+
+e.g: This blog is deployed with this [Shell Script](https://github.com/vinicinbgs/vinicinbgs.github.io/blob/main/deploy.sh) that generate a build, commit, push to gh-pages branch in my repo.
+
+You can use CLI commands from others softwares installed in your machine, like GIT, Docker, node, npm...
+
+If you understand the power of shell script your imagination will be the limit.
+
+Without further ado...
+
+## <a name="intro"></a> 1. Introduction
+---
+What is Shell Script?
+
+- A shell script is a text file that contains a sequence of commands for a UNIX-based 
+operating system. It is called a shell script because it combines a sequence of commands, 
+that would otherwise have to be typed into the keyboard one at a time, into a single script.
+
+A Unix shell is both a command interface and a programming language
+
+<p class="hightlight bg-danger">
+  In our case the computer program is <ins>example.sh</ins> file
+</p>
+<br />
+<h4>
+  <a name="create-example"></a>  1.1 Create a file called <ins>example.sh</ins> using terminal, follow:
+</h4>
+
+```bash
+touch example.sh
+chmod +x example.sh
+```
+
+- **touch**: will create the file
+- **chmod +x**: will give permission to execute file script
+
+<p class="hightlight">
+  You can use <strong>touch</strong> and <strong>chmod</strong> commands inside your shell script file too
+</p>
+
+<br />
+<h4>
+  <a name="write-example"></a> 1.2 Open file <ins>example.sh</ins> in your preferred IDE
+</h4>
+
+```bash
+#!/bin/sh
+
+echo "Start" # this command will output in terminal Start string
+```
+
+- `#!/bin/sh` tells Unix that the file is to be executed by /bin/sh.
+
+<br />
+<h4>
+  <a name="run-example"></a> 1.3 Running file <ins>example.sh</ins> in terminal
+</h4>
+
+```sh
+sh example.sh
+```
+
+<br />
+<h4>
+  <a name="create-new-file-example"></a> 1.4 Create a new file using shell script
+</h4>
+
+```bash
+#!/bin/sh
+echo "Start"
+touch new_file.txt # create new file called new_file.txt
+echo "First Line">> new_file.txt # append in new_file.txt the text First Line
+```
+
+<br />
+
+## <a name="variables"></a> 2. Variables
+---
+A variable is a character string to which we assign a value. 
+The value assigned could be a number, text, filename, device, or any other type of data.
+
+### 2.1 <a name="variables-declare"></a> Declare Variable
+
+```bash
+#!/bin/sh
+
+VARIABLE_MY_NAME="Vinicius"
+VARIABLE_TEXT="Hi, my name is "
+echo "$VARIABLE_TEXT $VARIABLE_MY_NAME"
+```
+
+Terminal Output: 
+```sh
+Hi, my name is Vinicius
+```
+
+### 2.2 <a name="variables-user-input"></a> Read Input Variable
+```bash
+#!/bin/sh
+
+echo "What is your name?"
+read VARIABLE_MY_NAME
+
+VARIABLE_TEXT="Hi,"
+
+echo "$VARIABLE_TEXT $VARIABLE_MY_NAME"
+```
+
+Terminal Output: 
+```sh
+What is your name?
+> Vinicius
+
+Hi, Vinicius
+```
+
+<br />
+
+## <a name="loops"></a> 3. Loops
+---
+Loops will enable you to execute one or more commands repeatedly
+
+### <a name="loops-for"></a> 3.1 For
+
+```bash
+#!/bin/sh
+for i in 1 2 3 4 5
+do
+  echo "Looping ... number $i"
+done
+```
+
+### <a name="loops-while"></a> 3.2 While
+
+```bash
+#!/bin/sh
+while :
+do
+  echo "Please type something in (^C to quit)"
+  read INPUT_STRING
+  echo "You typed: $INPUT_STRING"
+done
+```
+
+<br />
+
+### <a name="comparison"></a> 4. Comparison
+---
+Sometimes you need to check if one variable is equal or not to another or greater/less... <br />
+In this section you can check ways to compare numbers and strings variables.
+#### <a name="numbers-comparison"></a> 4.1 Numbers Comparison
+```bash
+# is equal to:
+if [ "$a" -eq "$b" ]
+
+# is not equal to:
+if [ "$a" -ne "$b" ]
+
+# is greater than:
+if [ "$a" -gt "$b" ]
+
+# is greater than or equal to:
+if [ "$a" -ge "$b" ]
+
+# is less than: -lt
+if [ "$a" -lt "$b" ]
+
+# is less than or equal to:
+if [ "$a" -le "$b" ]
+
+# is less than (within double parentheses):
+(("$a" < "$b"))
+
+# is less than or equal to (within double parentheses):
+(("$a" <= "$b"))
+
+# is greater than (within double parentheses):
+(("$a" > "$b"))
+
+# is greater than or equal to (within double parentheses):
+(("$a" >= "$b"))
+```
+
+<br />
+
+#### <a name="string-comparison"></a> 4.2 String Comparison
+```bash
+# is equal to: 
+if [ "$a" = "$b" ]
+
+# is equal to:
+if [ "$a" == "$b" ]
+
+# is not equal to:
+if [ "$a" != "$b" ]
+
+# is less than, in ASCII alphabetical order:
+if [[ "$a" < "$b" ]]
+
+# is greater than, in ASCII alphabetical order:
+if [[ "$a" > "$b" ]]
+
+# string is null, that is, has zero length:
+if [ -z "$String" ]
+then
+  echo "\$String is null."
+else
+  echo "\$String is NOT null."
+fi
+
+# string is not null:
+if [ -n "$String" ]
+then
+  echo "\$String is not null."
+else
+  echo "\$String is null."
+fi
+```
+
+<br />
+
+### <a name="final-example"></a> 5. Final example.sh
+---
+Copy the script below and run it on your machine and after use, edit to your needs
+
+[Repository on GitHub](https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh)
+```bash
+#!bin/sh
+
+script() {
+    echo "Start" # Output Start in terminal
+
+    # Receive variable by user input
+    echo "Put your name"      # Output Put your name in terminal
+    read name                 # Wait/Receive input variable name by user
+    echo Your name is ${name} # Output Your name is variable name
+
+    # Execute commands of another programs (like docker, git...)
+    docker -v # docker version
+    git --version # git version
+
+
+    rm Dockerfile # Remove old Dockerfile
+    touch Dockerfile # Create Dockerfile
+    echo "FROM alpine:3.14" >>Dockerfile # Input echo string inside file
+    echo 'ENTRYPOINT ["echo", "Container running 👍 ( ͡° ͜ʖ ͡°)"]' >>Dockerfile # Input echo string inside file
+    echo 'CMD ["'${name}'"] && /dev/null' >>Dockerfile # Input echo string inside file
+
+    # Build and Execute Docker Container
+    imageName="${name}-docker-image" # docker image name variable
+    docker build -t ${imageName} .   # build image
+    docker images                    # list images
+
+    # Generate utils variables
+    timestamp=$(date +%s)                                 # create variable timestamp to attach in container name
+    containerName="${name}-docker-container-${timestamp}" # variable container name to assign in run command
+
+    # Running command and see logs
+    echo "-------"
+    echo "Start: " && docker run -d --name ${containerName} ${imageName} # running container
+    echo "-------"
+    echo "Logs: " && docker logs ${containerName} # output logs container
+    echo "-------"
+    # Remove all Containers
+    containers=$(docker ps -a --format "{{.Names}}" | grep "${name}-docker-container") # list all containers created in this script
+    docker rm -f ${containers}                                                         # remove all containers created in this script
+    docker ps -a                                                                       # list all containers
+
+    # Remove all Images
+    imgs=$(docker images --format "{{.Repository}}" | grep "${imageName}") # imgs created repository
+    docker rmi -f ${imgs} # Remove images in imgs variable
+}
+
+script | tee ex.log # fill log file called ex.log
+```
+
+Steps:
+
+1. output "start" in terminal
+2. output "Put your name" in terminal
+3. wait user input variable name
+4. output "Your name is ..." in terminal
+5. check docker version
+6. check git version
+7. remove old Dockerfile
+8. create new Dockerfile empty
+9. write in file Dockerfile echo string to create a valid docker image
+10. build image
+11. run container
+12. output logs container
+13. remove all containers created (normally only one)
+14. remove all images created (normally only one)
+---
+<p class="hightlight" style={{ backgroundColor: 'yellow', color: 'black' }}>
+  Use SOURCES to study and deepen your knowledge
+</p>
+
+<a name="sources"></a> 
+
+Sources: <br />
+- https://www.gnu.org/software/bash/manual/html_node/index.html (shell)
+- https://www.shellscript.sh (shell)
+- https://tldp.org/LDP/abs/html/comparison-ops.html (shell)
+- https://www.tutorialspoint.com/unix/ (shell)
+- https://www.oreilly.com/openbook/debian/book/ch13_03.html (shell)
+- https://en.wikipedia.org/wiki/Tee_(command) (shell)
+- https://www.techtarget.com/searchdatacenter/definition/shell-script (shell)
+- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/ (docker)
+---
+- https://github.com/vinicinbgs/article-example-understand-shell-script/blob/main/example.sh

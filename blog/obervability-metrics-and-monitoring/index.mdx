@@ -1,0 +1,108 @@
+---
+title: 'Observability, Metrics and Monitoring'
+date: 2022-05-08
+slug: '/observability-metrics-and-monitoring'
+description: 'How can we listening the software statistics?'
+tags: 
+  - observability
+  - metrics
+  - monitoring
+  - telemetry
+---
+#### SUMMARY
+- [What is Observability?](#what-is-observability)
+  - 1. [What are Logs?](#what-are-logs)
+  - 2. [What are Metrics?](#what-are-metrics)
+  - 3. [What is Distributed Tracing?](#what-is-distributed-tracing)
+- [What is Monitoring?](#what-is-monitoring)
+- [Security Information Event Management (SIEM)](#what-is-security-information-event-management)
+
+> “You can't manage what you can't measure.”
+> 
+> -- <cite>Peter Drucker</cite>
+
+---
+
+# <a name="what-is-observability"></a>👀 What is Observability?
+In Control Theory, Observability is a measure of internal states of system can be inferred from the knowledge of its external outputs.
+`Observability enables us to ask why.`
+
+Lets us understand a system from the outside, by letting us ask questions about that system without knowing its inner workings.  
+Furthermore allows us to easily troubleshoot and handle novel problems and helps us answer the question "Why is this happening".  
+In order to be able to ask those questions of a system the application must be properly instrumented.
+That is the application code must emit signals such as traces, metrics and logs.   
+An application is properly instrumented when developers don't need to add more instrumentation to troubleshoot an issue, because they have all of the information they need.
+
+### Three Pillars of Observability:
+| Pillars  | Description                            |
+---------- | -------------------------------------- |
+| Metrics  | measures of quantitative assessment commonly used for comparing, and tracking performance or production.|
+| Logs     | a register of an event that occurred   |
+| Tracing  | tracing is the mechanism to following a program's flow and data progression|
+
+## <a name="what-are-logs"></a> 1. What are Logs?
+Logs are either events that occurred in the software. Logging is the act of keeping a log.
+Normally in a log record its possible find *timestamp*, *message*, *level* and *context data*.
+Logs can be divided:
+- Event Logs
+- Transaction Logs
+- Message Logs
+- Server Logs
+
+## <a name="what-are-metrics"></a> 2. What are Metrics?
+Metrics are values captured on your systems at a specific point in time. <br />
+*(i.e) the number of users currently logged in to a web application.*
+
+Can be collected once per second, one per minute or at another regular interval to monitor a system over time.
+
+##### 2.1. Work Metrics
+| Metric | Description |
+| ------ | ----------- |
+| Throughput | → is the amount of work the system is doing per unit time. Throughput is usually recorded as an absolute number. |
+| Success | → metrics represent the percentage of work that was executed successfully. |
+| Error | → metrics capture the number of erroneous results, usually expressed as a rate of errors per unit time or normalized by the throughput to yield errors per unit of work. Error metrics are often captured separately from success metrics when there are several potential sources of error, some of which are more serious or actionable than others. |
+| Performance | → metrics quantify how efficiently a component is doing its work. The most common performance metric is latency, which represents the time required to complete a unit of work. Latency can be expressed as an average or as a percentile, such as “99% of requests returned within 0.1s”. |
+
+##### 2.2. Resource Metrics
+| Metric | Description |
+| ------ | ----------- |
+| Saturation | → metrics measure the degree to which a resource has been consumed. |
+| Utilization | → metrics measure the percentage of the time that a resource was busy or active. |
+| Availability | → metrics measure the percentage of time that a system or resource was ready to perform work. |
+| Capacity | → metrics measure the total capacity of a resource or group of resources. |
+| Count | → metrics measure the number of occurrences of a particular event, usually expressed as a rate of events per unit time. |
+| Time | → metrics measure the amount of time that a system or resource was in a particular state. |
+| Error | → metrics measure the number of error events that occurred, usually expressed as a rate of errors per unit time. |
+
+#### Good Data
+- **Well-understood.** You should be able to quickly determine how each metric or event was captured and what it represents. During an outage you won’t want to spend time figuring out what your data means. Keep your metrics and events as simple as possible, use standard concepts described above, and name them clearly.
+
+- **Granular.** If you collect metrics too infrequently or average values over long windows of time, you may lose the ability to accurately reconstruct a system’s behavior. For example, periods of 100% resource utilization will be obscured if they are averaged with periods of lower utilization. Collect metrics for each system at a frequency that will not conceal problems, without collecting so often that monitoring becomes perceptibly taxing on the system (the observer effect) or creates noise in your monitoring data by sampling time intervals that are too short to contain meaningful data.
+
+- **Tagged by scope.** Each of your hosts operates simultaneously in multiple scopes, and you may want to check on the aggregate health of any of these scopes, or their combinations. For example: how is production doing in aggregate? How about production in the Northeast U.S.? How about a particular role or service? It is important to retain the multiple scopes associated with your data so that you can alert on problems from any scope, and quickly investigate outages without being limited by a fixed hierarchy of hosts.
+
+- **Long-lived.** If you discard data too soon, or if after a period of time your monitoring system aggregates your metrics to reduce storage costs, then you lose important information about what happened in the past. Retaining your raw data for a year or more makes it much easier to know what “normal” is, especially if your metrics have monthly, seasonal, or annual variations.
+
+## <a name="what-is-distributed-tracing"></a> 3. What is Distributed Tracing?
+Is a strange union of metrics and logging - the cardinality of logging with the analytical power of metrics.
+Tracing enables explicit automation to add entire execution flows to the presented context when you look to see what 
+happened during an execution logging show specific events as they happened, with some attributes to provide context around the event.
+Metrics gives you a broad overview of now the system is performing. Tracing uses the extra context you should have an your logged events to create a linked view of executions.
+
+---
+
+## <a name="what-is-monitoring"></a> 🔎 What is Monitoring?
+Monitoring is the process of collecting logs and metrics data to observe the behavior of software and detect abnormal behaviors.
+Monitoring is based to know with antecedence which signals you want to monitor.
+Monitoring shows something that is wrong.
+
+## <a name="what-is-security-information-event-management"></a> 🔐 Security Information Event Management (SIEM)?
+A specialized telemetry system for use by security and compliance teams, and a specilization of centralized logging and metrics. 
+The technique was in use long before the terms was formalized in the mid 2000.
+It's a solution to help the organization detect, analyze and act against security issues before it harms the company.
+
+---
+#### Sources
+- <a target="_blank" href="https://www.amazon.com.br/Software-Telemetry-Reliable-Logging-Monitoring/dp/161729814X">Software Telemetry: Reliable Logging and Monitoring</a>
+- <a target="_blank" href="https://www.datadoghq.com/blog/monitoring-101-collecting-data/">Datadog</a>
+- <a target="_blank" href="https://www.bmc.com/blogs/monitoring-logging-tracing/">BMC</a>
