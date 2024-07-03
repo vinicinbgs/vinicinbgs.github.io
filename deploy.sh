@@ -7,8 +7,8 @@ echo "Remove Public folder"
 rm -Rf public
 
 echo "Building..."
-yarn build
-cd public
+npm run build
+cd build
 
 echo "Initialize git in public folder"
 git init && git remote add origin https://github.com/vinicinbgs/vinicinbgs.github.io.git

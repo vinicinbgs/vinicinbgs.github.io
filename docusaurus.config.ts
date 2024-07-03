@@ -40,7 +40,8 @@ const config: Config = {
         // },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/vinicinbgs/vinicinbgs.github.io",
+          editUrl:
+            "https://github.com/vinicinbgs/vinicinbgs.github.io/blob/main",
         },
         theme: {
           customCss: "./src/css/custom.css",
