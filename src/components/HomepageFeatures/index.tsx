@@ -3,8 +3,8 @@ import styles from "./styles.module.css";
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section>
-      <div className="container margin-vert--lg">
+    <section className="margin-vert--lg">
+      <div className="container hero">
         <div className="row">
           <div className={clsx("col col--3")}>
             <img
@@ -34,6 +34,7 @@ export default function HomepageFeatures(): JSX.Element {
                 <a
                   target="__blank"
                   href="https://www.linkedin.com/in/software-engineer-vinicius-morais-dutra/"
+                  className="touchme"
                 >
                   reach out to me.
                 </a>

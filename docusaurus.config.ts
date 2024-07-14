@@ -26,8 +26,10 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en"],
+    locales: ["en", "pt-br"],
   },
+
+  plugins: ["docusaurus-plugin-image-zoom"],
 
   presets: [
     [
@@ -116,6 +118,16 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    zoom: {
+      selector: ".markdown img",
+      background: {
+        light: "rgb(255, 255, 255)",
+        dark: "rgb(50, 50, 50)",
+      },
+      config: {
+        // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+      },
     },
   } satisfies Preset.ThemeConfig,
 };
