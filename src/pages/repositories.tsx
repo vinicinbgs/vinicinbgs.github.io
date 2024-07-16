@@ -14,12 +14,8 @@ import {
   BsArrowRightCircle,
   BsArrowLeftCircle,
 } from "react-icons/bs";
-import {
-  Toolbar,
-  PreviousButton,
-  NextButton,
-  NotFoundRepositories,
-} from "./repositories.styles";
+
+import styles from "./repositories.module.css";
 
 const Repositories = () => {
   const [repositories, setRepositories] = useState<IRepository[]>([]);
@@ -71,23 +67,29 @@ const Repositories = () => {
           <Title id="repositories">
             <BsGithub /> Repositories
           </Title>
-          <Toolbar>
-            <PreviousButton onClick={previousPage}>
+          <div className={styles.toolbar}>
+            <button
+              className={`${styles.button} ${styles.previousButton}`}
+              onClick={previousPage}
+            >
               <BsArrowLeftCircle />
               &nbsp; Previous
-            </PreviousButton>
-            <NextButton onClick={nextPage}>
+            </button>
+            <button
+              className={`${styles.button} ${styles.nextButton}`}
+              onClick={nextPage}
+            >
               Next &nbsp;
               <BsArrowRightCircle />
-            </NextButton>
-          </Toolbar>
+            </button>
+          </div>
           <PageDivided>
             {repositories.length == 0 && !loading && (
               <>
-                <NotFoundRepositories>
+                <p className="not-found-repositories">
                   😓 Sorry... Not found repositories here, return to previous
                   pages
-                </NotFoundRepositories>
+                </p>
               </>
             )}
             {loading

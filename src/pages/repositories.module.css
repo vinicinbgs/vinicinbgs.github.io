@@ -1,0 +1,39 @@
+/* repositories.css */
+
+.toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.button {
+  border-radius: 5px;
+  border: 1px var(--ifm-color-primary) solid;
+  cursor: pointer;
+  font-size: 14px;
+  height: 32px;
+  color: var(--ifm-color-primary);
+  background-color: var(--ifm-background-color);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.button:hover {
+  filter: invert(0.15);
+}
+
+.previousButton {
+  margin-right: 5px;  
+}
+
+.nextButton {
+  margin-left: 5px;
+}
+
+.not-found-repositories {
+  font-size: 28px;
+  font-weight: 620;
+  color: #5e5e5e;
+}

@@ -30,14 +30,14 @@
   --ifm-color-primary-lighter: #f9f281;
   --ifm-color-primary-lightest: #fbf7b0;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
 
-  .footer--dark {
-    border-top: 1px dashed var(--ifm-color-primary) !important;
-    background-color: var(--ifm-navbar-background-color);
-    --ifm-footer-color: var(--ifm-navbar-link-color) !important;
-    --ifm-footer-link-color: var(--ifm-navbar-link-color) !important;
-    --ifm-footer-title-color: var(--ifm-navbar-link-color) !important;
-  }
+[data-theme='dark'] .footer--dark {
+  border-top: 1px dashed var(--ifm-color-primary) !important;
+  background-color: var(--ifm-navbar-background-color);
+  --ifm-footer-color: var(--ifm-navbar-link-color) !important;
+  --ifm-footer-link-color: var(--ifm-navbar-link-color) !important;
+  --ifm-footer-title-color: var(--ifm-navbar-link-color) !important;
 }
 
 .hero {
@@ -50,24 +50,24 @@
   --ifm-navbar-link-color: white;
   --ifm-navbar-link-hover-color: #f7ed52;
   --ifm-footer-link-hover-color: #f7ed52;
+}
 
-  .touchme {
-    color: #f7ed52;
-  }
+[data-theme="light"] .touchme {
+  color: #f7ed52;
+}
 
-  .hero {
-    background-color: var(--ifm-color-primary);
-    color: var(--ifm-color-secondary);
-  }
+[data-theme="light"] .hero {
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-secondary);
+}
 
-  .footer--dark {
-    background-color: var(--ifm-color-primary);
-    --ifm-footer-color: var(--ifm-color-secondary) !important;
-    --ifm-footer-link-color: var(--ifm-color-secondary) !important;
-    --ifm-footer-title-color: var(--ifm-color-secondary) !important;
-  }
+[data-theme="light"] .footer--dark {
+  background-color: var(--ifm-color-primary);
+  --ifm-footer-color: var(--ifm-color-secondary) !important;
+  --ifm-footer-link-color: var(--ifm-color-secondary) !important;
+  --ifm-footer-title-color: var(--ifm-color-secondary) !important;
+}
 
-  #__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module.colorModeToggle_node_modules-\@docusaurus-theme-classic-lib-theme-Navbar-Content-styles-module > button {
-    color: #f7ed52;
-  }
+[data-theme="light"] #__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module.colorModeToggle_node_modules-\@docusaurus-theme-classic-lib-theme-Navbar-Content-styles-module > button {
+  color: #f7ed52;
 }
