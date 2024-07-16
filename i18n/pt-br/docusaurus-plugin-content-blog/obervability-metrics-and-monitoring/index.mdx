@@ -16,9 +16,9 @@ O Objetivo do artigo é instruir sobre os conceitos de Observabilidade, Logs, M�
 Vamos aprender a aplica-los em um projeto prático e como eles se relacionam.
 
 
-# SUMMARY
+# Table of Contents
 
-- [SUMMARY](#summary)
+- [Table of Contents](#table-of-contents)
   - [🔭 Afinal, Observabilidade](#-afinal-observabilidade)
     - [Três Pilares da Observabilidade](#três-pilares-da-observabilidade)
     - [Conclusão](#conclusão)
@@ -34,18 +34,17 @@ Vamos aprender a aplica-los em um projeto prático e como eles se relacionam.
     - [Conclusão](#conclusão-1)
   - [ 2. 📈 Métricas: Decifrando o Desempenho do Software](#-2--métricas-decifrando-o-desempenho-do-software)
     - [2.1. Métricas de Recursos (CPU, Memória, Disco, Rede)](#21-métricas-de-recursos-cpu-memória-disco-rede)
-    - [Os quatros sinais de ouro (Four Golden Signals)](#os-quatros-sinais-de-ouro-four-golden-signals)
+    - [2.2. Métricas de Serviço (Four Golden Signals)](#22-métricas-de-serviço-four-golden-signals)
     - [2.2. Algumas Boas Práticas](#22-algumas-boas-práticas)
     - [2.3. Arquitetura](#23-arquitetura)
     - [Conclusão](#conclusão-2)
   - [ 3. 👣 Tracing: Rastreando Segredos](#-3--tracing-rastreando-segredos)
       - [Exemplo](#exemplo)
     - [3.1. Distributed Tracing](#31-distributed-tracing)
-  - [ 🔎 What is Monitoring?](#--what-is-monitoring)
-  - [ 🔐 Security Information Event Management (SIEM)?](#--security-information-event-management-siem)
-- [FALAR SOBRE](#falar-sobre)
-- [Correlação de Logs, Métricas e Tracing](#correlação-de-logs-métricas-e-tracing)
-- [Referências](#referências)
+    - [Conclusão](#conclusão-3)
+  - [ 4. 🚨 Monitoramento: Desvendando Mistérios em Tempo Real](#-4--monitoramento-desvendando-mistérios-em-tempo-real)
+    - [Conclusão](#conclusão-4)
+  - [Referências](#referências)
 
 > “You can't manage what you can't measure.”
 > 
@@ -301,28 +300,19 @@ Foram feitos 3 requests para a rota `/health` em um intervalo de `~1 minutos`. N
 
 Métricas de recursos são métricas que medem o uso de recursos de um sistema, como CPU, memória, disco e rede. Essas métricas são essenciais para monitorar a saúde e o desempenho de um sistema e identificar gargalos e problemas de desempenho.
 
-| Métrica               | Descrição                                                                                                                                              | Relação com SLA, SLO ou SLI | Fixa ou Dinâmica |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | ---------------- |
-| Saturação             | Mede o grau no qual um recurso está perto da sua capacidade máxima ou além. Esta métrica ajuda na definição de **limiares (thresholds)** para alertas. | SLI                         | Dinâmica         |
-| Utilização            | Mede a porcentagem ou a fração de um recurso que está sendo usado em um determinado momento.                                                           | SLI                         | Dinâmica         |
-| Erros                 | Mede a quantidade de erros que ocorrem em um sistema, serviço ou recurso.                                                                              | SLI                         | Dinâmica         |
-| Disponibilidade       | Quantifica o tempo durante o qual um sistema, serviço ou recurso está operacional e acessível.                                                         | SLA, SLO, SLI               | Dinâmica         |
-| Performance           | Mede a eficiência e a eficácia de sistemas, aplicações, serviços e processos.                                                                          | SLA, SLO, SLI               | Dinâmica         |
-| Tempo de Resposta     | Mede o tempo total desde que uma solicitação é feita até que uma resposta completa seja recebida, crucial para a experiência do usuário.               | SLA, SLO, SLI               | Dinâmica         |
-| Latência              | Mede o tempo que um recurso leva para responder a uma solicitação.                                                                                     | SLO, SLI                    | Dinâmica         |
-| Throughput            | Mede a quantidade de dados processados por unidade de tempo, indicando a capacidade do sistema de lidar com a carga de trabalho.                       | SLI                         | Dinâmica         |
-| Jitter                | Mede a variação no tempo de chegada de pacotes de rede, importante para avaliar a estabilidade da rede.                                                | SLO, SLI                    | Dinâmica         |
-| Capacidade            | Mede a quantidade total de um recurso disponível para uso, importante para planejamento de capacidade e dimensionamento.                               | SLI                         | Fixa             |
-| Capacidade de Conexão | Mede o número máximo de conexões simultâneas que um sistema pode suportar.                                                                             | SLI                         | Fixa             |
+| Sinal       | Descrição                                                                             |
+| ----------- | ------------------------------------------------------------------------------------- |
+| Utilization | Mede a quantidade de recurso que está sendo usada.                                    |
+| Saturation  | Mede o grau em que um recurso está perto de sua capacidade máxima ou além.            |
+| Errors      | Mede a quantidade de erros que ocorreram ao usar um recurso.                          |
+| Jitter      | Mede a variação que o pacote na rede é transmitido e quando ele é recebido.           |
+| Capacity    | Mede a quantidade máxima de trabalho que um sistema pode realizar. Ex: 8GB RAM, 3vCPU |
 
+![Metrics](./metrics_resource.png)
 
-The USE metrics (utilization, saturation, errors) are oriented towards hardware resources of your infrastructure. They help you understand how your machines are doing and what the cause of a problem might be.
+### 2.2. Métricas de Serviço (Four Golden Signals)
 
-The REDS metrics (requests, errors, duration, saturation — also known as the Four Golden Signals) are service-oriented, and they are also likely the ones you will want to alert on. REDS dashboards tell you how your services are performing and are a good proxy for your users’ experience.
-
-### Os quatros sinais de ouro (Four Golden Signals)
-
-Apresentadas no livro SRE do Google, essas 4 métricas são destinadas a entender a experiência de uso do sistema do ponto de vista dos usuários.
+Apresentadas no livro SRE do Google, essas 4 métricas são destinadas a entender a experiência de uso do sistema do ponto de vista dos usuários - Service-Oriented.
 
 | Sinal      | Descrição                                                                   |
 | ---------- | --------------------------------------------------------------------------- |
@@ -330,10 +320,6 @@ Apresentadas no livro SRE do Google, essas 4 métricas são destinadas a entende
 | Traffic    | Mede o número de requisições que o sistema está recebendo.                  |
 | Errors     | Mede o número de erros que o sistema está retornando.                       |
 | Saturation | Mede o grau no qual um recurso está perto da sua capacidade máxima ou além. |
-
-
-
-![Metrics](./metrics_resource.png)
 
 A métrica de desempenho mais comum é a latência, que representa o tempo necessário para concluir uma unidade de trabalho. **A latência pode ser expressa como uma média ou como um percentil, como "99% das solicitações retornaram em 0,1s".**  
 
@@ -421,43 +407,11 @@ Perceba que o `trace_id` é o mesmo para os dois `spans`, isso indica que ambos 
 
 Essa requisição está executando 2 métodos diferentes da aplicação, e ambos os métodos estão gerando logs.
 
-```json
-{
-  "timestamp": "2024-07-05 19:59:37",
-  "level": "INFO",
-  "message": "app.py",
-  "extra": {
-    "response": "Hello World!",
-    "status": "200",
-    "method": "GET",
-    "path": "/"
-  },
-  "trace_id": "fabbd1af-f31e-4e77-88a4-476413f00e85"
-}
-```
-
-```json
-{
-  "timestamp": "2024-07-05 19:59:37",
-  "level": "INFO",
-  "message": "app.py",
-  "extra": {
-    "total": 35,
-    "numbers": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
-  },
-  "trace_id": "fabbd1af-f31e-4e77-88a4-476413f00e85"
-}
-```
+![tracing](./tracing_loggingz.png)
 
 ### 3.1. Distributed Tracing
 
-<img src={require("./tracing_1.png").default} alt="Tracing" width="400"/>
+<img src={require("./tracing_call.png").default} alt="Tracing" width="400"/>
 
 O distributed tracing (rastreamento distribuído) se expande para ambientes onde múltiplas aplicações e serviços colaboram para processar uma requisição. 
 
@@ -465,52 +419,52 @@ Em um sistema distribuído, uma única requisição pode atravessar várias apli
 
 O distributed tracing tem como objetivo fornecer visibilidade ponta a ponta de como as requisições fluem através de um sistema distribuído, identificando pontos de latência, gargalos e falhas.
 
----
+![distributed-tracing](./tracing_oltp.png)
 
-## <a name="what-is-monitoring"></a> 🔎 What is Monitoring?
-Monitoring is the process of collecting logs and metrics data to observe the behavior of software and detect abnormal behaviors.
-Monitoring is based to know with antecedence which signals you want to monitor.
-Monitoring shows something that is wrong.
+### Conclusão
 
-Comparação entre Monitoramento Ativo e Passivo
+O tracing é uma ferramenta poderosa para entender como as requisições são processadas em uma aplicação e como elas se relacionam com outras requisições.
 
-|           Aspecto           | Monitoramento Ativo                                           | Monitoramento Passivo                                       |
-| :-------------------------: | ------------------------------------------------------------- | ----------------------------------------------------------- |
-|         **Método**          | Envia requisições/sondas ao sistema                           | Observa o tráfego de rede e coleta logs                     |
-|      **Proatividade**       | Proativo                                                      | Reativo                                                     |
-|       **Sobrecarga**        | Pode adicionar carga adicional ao sistema                     | Baixa sobrecarga                                            |
-|  **Detecção de Problemas**  | Detecta problemas rapidamente através de sondagens constantes | Pode detectar problemas após eles terem ocorrido            |
-| **Exemplos de Ferramentas** | Nagios, Pingdom                                               | Wireshark, Splunk, ELK Stack                                |
-|        **Vantagens**        | Detecção rápida, ação preventiva, métricas detalhadas         | Baixa sobrecarga, informações detalhadas, análise histórica |
-|      **Desvantagens**       | Sobrecarga de rede, possíveis falsos positivos                | Reatividade, dependência de qualidade de logs               |
+O tracing é especialmente útil em sistemas distribuídos, onde várias aplicações e serviços colaboram para processar uma requisição. 
 
-
-## <a name="what-is-security-information-event-management"></a> 🔐 Security Information Event Management (SIEM)?
-A specialized telemetry system for use by security and compliance teams, and a specilization of centralized logging and metrics. 
-The technique was in use long before the terms was formalized in the mid 2000.
-It's a solution to help the organization detect, analyze and act against security issues before it harms the company.
+Mas também é muito útil em sistemas onde uma requisição pode ser processada por várias partes da aplicação.
 
 ---
 
-# FALAR SOBRE
+## <a name="what-is-monitoring"></a> 4. 🚨 Monitoramento: Desvendando Mistérios em Tempo Real
 
-# Correlação de Logs, Métricas e Tracing
-Log é o registro de um evento.
-A métrica pode ser construída a partir de logs, e os logs podem ser construídos a partir de traces.
-Trace é a técnica que permite rastrear logs através de um identificador único no payload do log.
+Monitoramento é o ato de ativamente observar o estado de um sistema para detectar problemas e tomar medidas corretivas.
 
-O trace possui as seguintes características:
-- trace_id
-- span_id
-- parent_id
-- start_time
-- end_time
-- duration
-- tags
-- logs
+O monitoramento é uma parte essencial da observabilidade, pois fornece informações em tempo real sobre o estado de um sistema e ajudam a identificar que está ocorrendo problemas.
 
+Usamos alertas para notificar os operadores do sistema quando alguma politica de alerta é violada. Esses alertas ajudam a manter os operadores do sistema cientes sobre o que está acontecendo.
 
-# Referências
+Exitem duas abordagens de Monitoramento, chamamos de Ativo e Passivo
+
+| Aspecto                   | Monitoramento Ativo                                           | Monitoramento Passivo                                       |
+| ------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Método**                | Envia requisições/sondas ao sistema                           | Observa o tráfego de rede e coleta logs                     |
+| **Proatividade**          | Proativo                                                      | Reativo                                                     |
+| **Sobrecarga**            | Pode adicionar carga adicional ao sistema                     | Baixa sobrecarga                                            |
+| **Detecção de Problemas** | Detecta problemas rapidamente através de sondagens constantes | Pode detectar problemas após eles terem ocorrido            |
+| **Vantagens**             | Detecção rápida, ação preventiva, métricas detalhadas         | Baixa sobrecarga, informações detalhadas, análise histórica |
+| **Desvantagens**          | Sobrecarga de rede, possíveis falsos positivos                | Reatividade, dependência de qualidade de logs               |
+
+A prática do monitoramento ativo é comum em sistemas críticos, onde a detecção de problemas e ação preventiva são essenciais para garantir a disponibilidade e confiabilidade do sistema. 
+
+Pense que você fica cutucando o sistema para ver se ele está responsivo e funcionando como deveria.
+
+Já a prática do monitoramento passivo é comum para todos os sistemas.
+
+### Conclusão
+
+Para monitorar um sistema de forma eficaz, defina métricas e thresholds para que quando um threshold for violado, um alerta seja disparado e o operador do sistema receba notificação.
+
+Mas tome cuidado com o excesso de alertas, pois isso pode levar a fadiga de alertas e fazer com que os operadores ignorem alertas importantes.
+
+---
+
+## Referências
 - https://www.oreilly.com/library/view/observability-engineering/9781492076438/
 - https://www.manning.com/books/software-telemetry
 - https://sre.google/sre-book/table-of-contents/ (Free to Read Online)
