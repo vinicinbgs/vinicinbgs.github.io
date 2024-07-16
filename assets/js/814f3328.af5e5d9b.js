@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Observability, Metrics and Monitoring","permalink":"/blog/observability-metrics-and-monitoring","unlisted":false},{"title":"Understand Shell Script","permalink":"/blog/understand-shell-script","unlisted":false}]}')}}]);
