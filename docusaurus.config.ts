@@ -81,6 +81,10 @@ const config: Config = {
           label: "LinkedIn",
           position: "right",
         },
+        {
+          type: "localeDropdown",
+          position: "left",
+        },
       ],
     },
     footer: {
