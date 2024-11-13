@@ -7,67 +7,19 @@
 /* You can override the default Infima variables here. */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:root {
-  --ifm-color-primary: #180d1e;
-  --ifm-color-primary-dark: #160c1b;
-  --ifm-color-primary-darker: #140b1a;
-  --ifm-color-primary-darkest: #110915;
-  --ifm-color-primary-light: #1a0e21;
-  --ifm-color-primary-lighter: #1c0f23;
-  --ifm-color-primary-lightest: #1f1127;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
-}
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #f7ed52;
-  --ifm-color-primary-dark: #f6ea33;
-  --ifm-color-primary-darker: #f5e823;
-  --ifm-color-primary-darkest: #dccf0a;
-  --ifm-color-primary-light: #f8f071;
-  --ifm-color-primary-lighter: #f9f281;
-  --ifm-color-primary-lightest: #fbf7b0;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
-
 [data-theme='dark'] .footer--dark {
-  border-top: 1px dashed var(--ifm-color-primary) !important;
   background-color: var(--ifm-navbar-background-color);
   --ifm-footer-color: var(--ifm-navbar-link-color) !important;
   --ifm-footer-link-color: var(--ifm-navbar-link-color) !important;
   --ifm-footer-title-color: var(--ifm-navbar-link-color) !important;
 }
 
-.hero {
-  border-radius: 1000px;
-}
-
-[data-theme="light"] {
-  --ifm-background-color: rgb(241, 241, 241);
-  --ifm-navbar-background-color: var(--ifm-color-primary);
-  --ifm-navbar-link-color: white;
-  --ifm-navbar-link-hover-color: #f7ed52;
-  --ifm-footer-link-hover-color: #f7ed52;
-}
-
-[data-theme="light"] .touchme {
-  color: #f7ed52;
-}
-
-[data-theme="light"] .hero {
-  background-color: var(--ifm-color-primary);
-  color: var(--ifm-color-secondary);
-}
-
-[data-theme="light"] .footer--dark {
-  background-color: var(--ifm-color-primary);
-  --ifm-footer-color: var(--ifm-color-secondary) !important;
-  --ifm-footer-link-color: var(--ifm-color-secondary) !important;
-  --ifm-footer-title-color: var(--ifm-color-secondary) !important;
-}
-
-[data-theme="light"] #__docusaurus > nav > div.navbar__inner > div.navbar__items.navbar__items--right > div.toggle_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module.colorModeToggle_node_modules-\@docusaurus-theme-classic-lib-theme-Navbar-Content-styles-module > button {
-  color: #f7ed52;
+[data-theme='dark'] {
+  --ifm-color-primary: #25bec1;
+  --ifm-color-primary-dark: #21abae;
+  --ifm-color-primary-darker: #1fa1a4;
+  --ifm-color-primary-darkest: #1a8587;
+  --ifm-color-primary-light: #29d1d4;
+  --ifm-color-primary-lighter: #31d4d8;
+  --ifm-color-primary-lightest: #4edadd;
 }
