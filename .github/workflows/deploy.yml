@@ -1,0 +1,38 @@
+name: Deploy Docusaurus to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Docusaurus
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd build
+        git init
+        git remote add origin https://github.com/vinicinbgs/vinicinbgs.github.io.git
+        git checkout -b gh-pages
+        echo "beadev.net" > CNAME
+        git add .
+        git commit -m "deploy"
+        git push -u origin gh-pages -f
