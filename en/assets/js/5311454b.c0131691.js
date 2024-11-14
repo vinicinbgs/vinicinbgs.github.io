@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[430],{2185:e=>{e.exports=JSON.parse('{"tags":[{"label":"technology","permalink":"/en/blog/tags/technology","count":1},{"label":"shell script","permalink":"/en/blog/tags/shell-script","count":1},{"label":"automation","permalink":"/en/blog/tags/automation","count":1}]}')}}]);
