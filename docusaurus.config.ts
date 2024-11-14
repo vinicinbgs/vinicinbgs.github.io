@@ -77,7 +77,7 @@ const config: Config = {
           position: "right",
         },
         {
-          href: "https://github.com/vinicinbgs",
+          href: "https://www.linkedin.com/in/software-engineer-vinicius-morais-dutra/",
           label: "LinkedIn",
           position: "right",
         },
