@@ -41,6 +41,7 @@ const config: Config = {
         //     "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         // },
         blog: {
+          routeBasePath: "/",
           showReadingTime: true,
           editUrl:
             "https://github.com/vinicinbgs/vinicinbgs.github.io/blob/main",
@@ -68,8 +69,8 @@ const config: Config = {
         //   position: "left",
         //   label: "Tutorial",
         // },
+        { to: "/", label: "Blog", position: "left" },
         { to: "/about", label: "About", position: "left" },
-        { to: "/blog", label: "Blog", position: "left" },
         { to: "/repositories", label: "Repositories", position: "left" },
         {
           href: "https://github.com/vinicinbgs",

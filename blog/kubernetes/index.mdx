@@ -1,0 +1,117 @@
+---
+title: 'Kubernetes'
+date: 2025-05-01
+slug: '/kubernetes'
+description: 'Kubernetes System'
+tags: 
+  - 'kubernetes'
+---
+
+
+### Label
+```sh
+# Count pods with a specific label
+kubectl get pods -l env=dev -o jsonpath='{.items[*].metadata.name}' | xargs -n 1 | wc -l
+
+# Count all resources with a specific label
+kubectl get all -A -l env=prod -o jsonpath='{.items[*].metadata.name}' | xargs -n 1 | wc -l
+
+# Get all pods with a group of specific label
+kubectl get pods -l env=prod,bu=finance,tier=frontend -o jsonpath='{.items[*].metadata.name}'
+```
+
+```sh
+kubectl label node/node01 color=blue
+kubectl create deployment blue --image nginx --replicas 3
+```
+
+### Kubernetes Taints
+In Kubernetes, taints and tolerations work together to control on which nodes Pods are allowed 
+(or forced) to schedule. They're the inverse of labels/selectors: instead of saying “only put pods with this label on those nodes,” you taint a node to say “no pods may land here unless they explicitly tolerate the taint.”
+
+```sh
+kubectl taint nodes <node-name> key=value:Effect # add taint
+kubectl describe node <node-name> | grep Taints # check taints
+kubectl taint nodes <node-name> key=value:NoSchedule- # remove taint
+```
+
+##### Effects
+- **NoSchedule: ** Pods that do not tolerate this taint will never be scheduled onto the node.
+- **PreferNoSchedule: ** Kubernetes will try not to schedule non-tolerating Pods there, but won’t guarantee it.
+- **NoExecute: ** Existing Pods that don’t tolerate the taint will be evicted, and new non-tolerating Pods will never be scheduled.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  tolerations:
+    - key: "key"
+      operator: "Equal"      # or "Exists"
+      value: "value"         # only for Equal
+      effect: "NoSchedule"
+      # optional: how long to tolerate (seconds)
+      tolerationSeconds: 3600
+  containers:
+    - name: nginx
+      image: nginx
+
+```
+
+### Kubernetes Debugging
+```sh
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+- OOMKilled: Out of Memory Killed, the container was killed because the memory necessary to run the container was not available.
+- CrashLoopBackOff: The container is crashing and restarting repeatedly.
+- ImagePullBackOff: The image cannot be pulled from the registry.
+- ErrImagePull: The image cannot be pulled from the registry.
+
+#### Resource Limits
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-container
+      image: nginx
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+```
+
+
+### DaemonSet
+```sh
+kubectl create deployment example --image=nginx -n example --dry-run=client -o yaml > example.yaml
+```
+
+Change the kind from Deployment to DaemonSet and remove the replicas field. 
+```yaml
+apiVersion: apps/v1
+kind: Deployment # change it to > DaemonSet
+```
+
+
+### Static Pod
+
+/etc/kubernetes/manifests
+
+/var/lib/kubelet/config.yaml
+
+### Scheduler
+- https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/
+- https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
+- https://kubernetes.io/blog/2017/03/advanced-scheduling-in-kubernetes/
+
+
+### Kubelet
+- https://kubernetes.io/docs/reference/node/kubelet-files/
